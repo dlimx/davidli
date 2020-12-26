@@ -1,58 +1,182 @@
+/* eslint-disable no-param-reassign */
 module.exports = {
+  mapping: {
+    'Mdx.frontmatter.author': `AuthorsYaml`,
+  },
   siteMetadata: {
-    title: 'David Li',
-    description: 'My personal home page.',
-    keywords: 'blog',
-    siteUrl: 'https://davidli.io',
-    author: {
-      name: 'David Li',
-      url: 'https://davidli.io',
-      email: 'me@davidli.io',
+    title: `David Li`,
+    name: `David Li`,
+    description: `My online site and presence`,
+    hero: {
+      heading: `Welcome to my home page.`,
+      maxWidth: 652,
     },
+    author: `@dlimx`,
+    siteUrl: 'https://davidli.io',
+    social: [
+      {
+        name: `github`,
+        url: `https://github.com/dlimx`,
+      },
+      {
+        name: `instagram`,
+        url: `https://instagram.com/dli.mx`,
+      },
+      {
+        name: `linkedin`,
+        url: `https://www.linkedin.com/in/dlimx/`,
+      },
+    ],
   },
   plugins: [
+    `gatsby-plugin-typescript`,
+    `gatsby-image`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
+    `gatsby-transformer-yaml`,
+    `gatsby-plugin-theme-ui`,
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-plugin-feed`,
       options: {
-        name: 'content',
-        path: `${__dirname}/src/content`,
-      },
-    },
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
+        query: `
           {
-            resolve: 'gatsby-remark-responsive-iframe',
-            options: {
-              wrapperStyle: 'margin-bottom: 1rem',
-            },
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        setup: ({
+          query: {
+            site: { siteMetadata },
           },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
+          ...rest
+        }) => {
+          siteMetadata.feed_url = `${siteMetadata.siteUrl}/rss.xml`;
+          siteMetadata.image_url = `${siteMetadata.siteUrl}/icons/icon-512x512.png`;
+          const siteMetadataModified = siteMetadata;
+          siteMetadataModified.feed_url = `${siteMetadata.siteUrl}/rss.xml`;
+          siteMetadataModified.image_url = `${siteMetadata.siteUrl}/icons/icon-512x512.png`;
+
+          return {
+            ...siteMetadataModified,
+            ...rest,
+          };
+        },
+        feeds: [
           {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1140,
-              quality: 90,
-              linkImagesToOriginal: false,
+            serialize: ({ query: { site, allArticle } }) => {
+              return allArticle.edges
+                .filter(edge => !edge.node.secret)
+                .map(edge => {
+                  return {
+                    ...edge.node,
+                    description: edge.node.excerpt,
+                    date: edge.node.date,
+                    url: site.siteMetadata.siteUrl + edge.node.slug,
+                    guid: site.siteMetadata.siteUrl + edge.node.slug,
+                    // custom_elements: [{ "content:encoded": edge.node.body }],
+                    author: edge.node.author,
+                  };
+                });
             },
+            query: `
+              {
+                allArticle(sort: {order: DESC, fields: date}) {
+                  edges {
+                    node {
+                      excerpt
+                      date
+                      slug
+                      title
+                      author
+                      secret
+                    }
+                  }
+                }
+              }`,
+            output: '/rss.xml',
           },
         ],
       },
     },
-    'gatsby-transformer-json',
     {
-      resolve: 'gatsby-plugin-canonical-urls',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        siteUrl: 'https://davidli.io',
+        path: 'content/posts',
+        name: 'content/posts',
       },
     },
-    'gatsby-plugin-emotion',
-    'gatsby-plugin-typescript',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: 'content/authors',
+        name: 'content/authors',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 10000,
+              linkImagesToOriginal: false,
+              quality: 80,
+              withWebp: true,
+            },
+          },
+          {
+            resolve: `@raae/gatsby-remark-oembed`,
+            options: {
+              providers: {
+                include: ['Instagram'],
+              },
+            },
+          },
+          {
+            resolve: 'gatsby-remark-embed-video',
+            options: {
+              width: 680,
+              ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
+              height: 400, // Optional: Overrides optional.ratio
+              related: false, // Optional: Will remove related videos from the end of an embedded YouTube video.
+              noIframeBorder: true, // Optional: Disable insertion of <style> border: 0
+              urlOverrides: [
+                {
+                  id: 'youtube',
+                  embedURL: videoId => `https://www.youtube-nocookie.com/embed/${videoId}`,
+                },
+              ], // Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
+            },
+          },
+          { resolve: `gatsby-remark-copy-linked-files` },
+          { resolve: `gatsby-remark-numbered-footnotes` },
+          { resolve: `gatsby-remark-smartypants` },
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'noreferrer',
+            },
+          },
+        ],
+        remarkPlugins: [require(`remark-slug`)], // eslint-disable-line global-require
+      },
+    },
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        displayName: process.env.NODE_ENV === `development`,
+      },
+    },
   ],
 };

@@ -1,7 +1,6 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+// Load static fonts
+require('typeface-merriweather');
 
-// You can delete this file if you're not using it
+exports.onInitialClientRender = require('./src/gatsby/browser/onInitialClientRender');
+exports.onRouteUpdate = require('./src/gatsby/browser/onRouteUpdate');
+exports.shouldUpdateScroll = require('./src/gatsby/browser/shouldUpdateScroll');
