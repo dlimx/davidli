@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 export const GridLayoutContext = createContext({
   gridLayout: 'tiles',
   hasSetGridLayout: false,
-  setGridLayout: (tile: string) => {},
+  setGridLayout: (_tile: string) => {},
   getGridLayout: () => {},
 });
 

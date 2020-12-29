@@ -4,7 +4,7 @@ import { useThemeUI } from 'theme-ui';
 
 import 'react-medium-image-zoom/dist/styles.css';
 
-const ImageZoom: React.FC<{}> = props => {
+const ImageZoom: React.FC<{ alt: string; src: string }> = props => {
   const [isZoomed, setIsZoomed] = useState(false);
   const { theme } = useThemeUI();
 
@@ -24,7 +24,7 @@ const ImageZoom: React.FC<{}> = props => {
   }, []);
 
   return (
-    <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange} zoomMargin={40} overlayBgColorEnd={theme.colors.background}>
+    <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange} zoomMargin={40} overlayBgColorEnd={theme!.colors!.background}>
       <img className={image.className} src={image.src} alt={image.alt} style={image.style} />
     </ControlledZoom>
   );

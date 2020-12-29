@@ -1,7 +1,7 @@
 import React from 'react';
-import { Icon } from '@types';
+import { IIcon } from '../../types/types';
 
-const UrlIcon: Icon = ({ fill = 'white' }) => (
+const UrlIcon: IIcon = ({ fill = 'white' }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 30 30">
     <path
       fill={fill}

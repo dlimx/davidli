@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Icon } from '@types';
+import { IIcon } from '../../types/types';
 
-const FacebookIcon: Icon = ({ fill = 'white' }) => (
+const FacebookIcon: IIcon = ({ fill = 'white' }) => (
   <svg width="7" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"

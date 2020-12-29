@@ -2,6 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import throttle from 'lodash/throttle';
 
+const OverlapContainer = styled.div<{ isOverlapping: boolean }>`
+  user-select: ${p => (p.isOverlapping ? 'none' : 'initial')};
+  pointer-events: ${p => (p.isOverlapping ? 'none' : 'initial')};
+  opacity: ${p => (p.isOverlapping ? 0 : 1)};
+  transition: ${p => (p.isOverlapping ? 'opacity 0.25s' : 'opacity 0.25s')};
+`;
+
 /**
  * <HandleOverlap />
  * This is similar to Medium's "show and hide" the sidebar if it's overlapping an
@@ -47,11 +54,13 @@ const HandleOverlap: React.FC<{}> = props => {
       const ctas = Array.from(document.getElementsByClassName('CallToAction'));
       const images = Array.from(document.querySelectorAll('img'));
 
-      const nodesToNotOverlap = [...ctas, ...images];
+      const nodesToNotOverlap = [...ctas, ...images] as HTMLElement[];
       const noNodesAreVisible = !nodesToNotOverlap.some(isVisible);
 
+      // eslint-disable-next-line consistent-return
       nodesToNotOverlap.forEach((node: HTMLElement): void | null => {
-        const isOverlapping = collide(asideRef.current, node);
+        // eslint-disable-next-line @typescript-eslint/no-shadow
+        const isOverlapping = collide(asideRef!.current!, node);
 
         if (noNodesAreVisible) {
           return setIsOverlapping(isOverlapping);
@@ -79,16 +88,10 @@ const HandleOverlap: React.FC<{}> = props => {
 
   return (
     <OverlapContainer isOverlapping={isOverlapping} ref={asideRef}>
+      {/* eslint-disable-next-line react/destructuring-assignment */}
       {props.children}
     </OverlapContainer>
   );
 };
 
 export default HandleOverlap;
-
-const OverlapContainer = styled.div<{ isOverlapping: boolean }>`
-  user-select: ${p => (p.isOverlapping ? 'none' : 'initial')};
-  pointer-events: ${p => (p.isOverlapping ? 'none' : 'initial')};
-  opacity: ${p => (p.isOverlapping ? 0 : 1)};
-  transition: ${p => (p.isOverlapping ? 'opacity 0.25s' : 'opacity 0.25s')};
-`;

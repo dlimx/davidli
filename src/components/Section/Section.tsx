@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import mediaqueries from '@styles/media';
+import mediaqueries from '../../styles/media';
 
-const Section = styled.section<{ narrow?: boolean }>`
+const Section = styled.section<{ narrow?: boolean; relative?: boolean }>`
   width: 100%;
   max-width: 1220px;
   margin: 0 auto;

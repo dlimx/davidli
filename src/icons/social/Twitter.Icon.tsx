@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Icon } from '@types';
+import { IIcon } from '../../types/types';
 
-const TwitterIcon: Icon = ({ fill = 'white', ...props }) => (
+const TwitterIcon: IIcon = ({ fill = 'white', ...props }) => (
   <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       fillRule="evenodd"

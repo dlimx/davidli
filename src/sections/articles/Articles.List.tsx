@@ -1,108 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Link } from 'gatsby';
 
-import Headings from '@components/Headings';
-import Image, { ImagePlaceholder } from '@components/Image';
-
-import mediaqueries from '@styles/media';
-import { IArticle } from '@types';
+import mediaqueries from '../../styles/media';
+import { IArticle } from '../../types/types';
+import Headings from '../../components/Headings';
+import Image, { ImagePlaceholder } from '../../components/Image';
 
 import { GridLayoutContext } from './Articles.List.Context';
-
-/**
- * Tiles
- * [LONG], [SHORT]
- * [SHORT], [LONG]
- * [SHORT], [LONG]
- *
- * or ------------
- *
- * Rows
- * [LONG]
- * [LONG]
- * [LONG]
- */
-
-interface ArticlesListProps {
-  articles: IArticle[];
-  alwaysShowAllDetails?: boolean;
-}
-
-interface ArticlesListItemProps {
-  article: IArticle;
-  narrow?: boolean;
-}
-
-const ArticlesList: React.FC<ArticlesListProps> = ({ articles, alwaysShowAllDetails }) => {
-  if (!articles) return null;
-
-  const hasOnlyOneArticle = articles.length === 1;
-  const { gridLayout = 'tiles', hasSetGridLayout, getGridLayout } = useContext(GridLayoutContext);
-
-  /**
-   * We're taking the flat array of articles [{}, {}, {}...]
-   * and turning it into an array of pairs of articles [[{}, {}], [{}, {}], [{}, {}]...]
-   * This makes it simpler to create the grid we want
-   */
-  const articlePairs = articles.reduce((result, value, index, array) => {
-    if (index % 2 === 0) {
-      result.push(array.slice(index, index + 2));
-    }
-    return result;
-  }, []);
-
-  useEffect(() => getGridLayout(), []);
-
-  return (
-    <ArticlesListContainer style={{ opacity: hasSetGridLayout ? 1 : 0 }} alwaysShowAllDetails={alwaysShowAllDetails}>
-      {articlePairs.map((ap, index) => {
-        const isEven = index % 2 !== 0;
-        const isOdd = index % 2 !== 1;
-
-        return (
-          <List key={index} gridLayout={gridLayout} hasOnlyOneArticle={hasOnlyOneArticle} reverse={isEven}>
-            <ListItem article={ap[0]} narrow={isEven} />
-            <ListItem article={ap[1]} narrow={isOdd} />
-          </List>
-        );
-      })}
-    </ArticlesListContainer>
-  );
-};
-
-export default ArticlesList;
-
-const ListItem: React.FC<ArticlesListItemProps> = ({ article, narrow }) => {
-  if (!article) return null;
-
-  const { gridLayout } = useContext(GridLayoutContext);
-  const hasOverflow = narrow && article.title.length > 35;
-  const imageSource = narrow ? article.hero.narrow : article.hero.regular;
-  const hasHeroImage = imageSource && Object.keys(imageSource).length !== 0 && imageSource.constructor === Object;
-
-  return (
-    <ArticleLink to={article.slug} data-a11y="false">
-      <Item gridLayout={gridLayout}>
-        <ImageContainer narrow={narrow} gridLayout={gridLayout}>
-          {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
-        </ImageContainer>
-        <div>
-          <Title dark hasOverflow={hasOverflow} gridLayout={gridLayout}>
-            {article.title}
-          </Title>
-          <Excerpt narrow={narrow} hasOverflow={hasOverflow} gridLayout={gridLayout}>
-            {article.excerpt}
-          </Excerpt>
-          <MetaData>
-            {article.date} · {article.timeToRead} min read
-          </MetaData>
-        </div>
-      </Item>
-    </ArticleLink>
-  );
-};
+import { IStyledProps } from '../../types/style';
 
 const wide = '1fr';
 const narrow = '457px';
@@ -136,7 +43,11 @@ const ArticlesListContainer = styled.div<{ alwaysShowAllDetails?: boolean }>`
   ${p => p.alwaysShowAllDetails && showDetails}
 `;
 
-const listTile = p => css`
+interface IListTile extends IStyledProps {
+  reverse: boolean;
+}
+
+const listTile = (p: IListTile) => css`
   position: relative;
   display: grid;
   grid-template-columns: ${p.reverse ? `${narrow} ${wide}` : `${wide} ${narrow}`};
@@ -160,7 +71,7 @@ const listTile = p => css`
   `}
 `;
 
-const listItemRow = p => css`
+const listItemRow = (p: IStyledProps) => css`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 488px;
@@ -190,7 +101,7 @@ const listItemRow = p => css`
   `}
 `;
 
-const listItemTile = p => css`
+const listItemTile = (p: IStyledProps) => css`
   position: relative;
 
   ${mediaqueries.tablet`
@@ -209,8 +120,12 @@ const listItemTile = p => css`
   `}
 `;
 
+interface IListRow extends IStyledProps {
+  hasOnlyOneArticle: boolean;
+}
+
 // If only 1 article, dont create 2 rows.
-const listRow = p => css`
+const listRow = (p: IListRow) => css`
   display: grid;
   grid-template-rows: ${p.hasOnlyOneArticle ? '1fr' : '1fr 1fr'};
 `;
@@ -227,7 +142,7 @@ const Item = styled.div<{ gridLayout: string }>`
   ${p => (p.gridLayout === 'rows' ? listItemRow : listItemTile)}
 `;
 
-const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
+const ImageContainer = styled.div<{ narrow?: boolean; gridLayout: string }>`
   position: relative;
   height: ${p => (p.gridLayout === 'tiles' ? '280px' : '220px')};
   box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
@@ -253,7 +168,7 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
   `}
 `;
 
-const Title = styled(Headings.h2)`
+const Title = styled(Headings.h2)<{ hasOverflow?: boolean; gridLayout: string; dark?: boolean }>`
   font-size: 21px;
   font-family: ${p => p.theme.fonts.serif};
   margin-bottom: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? '35px' : '10px')};
@@ -277,8 +192,8 @@ const Title = styled(Headings.h2)`
 `;
 
 const Excerpt = styled.p<{
-  hasOverflow: boolean;
-  narrow: boolean;
+  hasOverflow?: boolean;
+  narrow?: boolean;
   gridLayout: string;
 }>`
   ${limitToTwoLines};
@@ -361,3 +276,98 @@ const ArticleLink = styled(Link)`
     }
   `}
 `;
+
+/**
+ * Tiles
+ * [LONG], [SHORT]
+ * [SHORT], [LONG]
+ * [SHORT], [LONG]
+ *
+ * or ------------
+ *
+ * Rows
+ * [LONG]
+ * [LONG]
+ * [LONG]
+ */
+
+interface ArticlesListProps {
+  articles: IArticle[];
+  alwaysShowAllDetails?: boolean;
+}
+
+interface ArticlesListItemProps {
+  article: IArticle;
+  narrow?: boolean;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-shadow
+const ListItem: React.FC<ArticlesListItemProps> = ({ article, narrow }) => {
+  if (!article) return null;
+
+  const { gridLayout } = useContext(GridLayoutContext);
+  const hasOverflow = narrow && article.title.length > 35;
+  const imageSource = narrow ? article.hero.narrow : article.hero.regular;
+  const hasHeroImage = imageSource && Object.keys(imageSource).length !== 0 && imageSource.constructor === Object;
+
+  return (
+    <ArticleLink to={article.slug} data-a11y="false">
+      <Item gridLayout={gridLayout}>
+        <ImageContainer narrow={narrow} gridLayout={gridLayout}>
+          {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
+        </ImageContainer>
+        <div>
+          <Title dark hasOverflow={hasOverflow} gridLayout={gridLayout}>
+            {article.title}
+          </Title>
+          <Excerpt narrow={narrow} hasOverflow={hasOverflow} gridLayout={gridLayout}>
+            {article.excerpt}
+          </Excerpt>
+          <MetaData>
+            {article.date} · {article.timeToRead} min read
+          </MetaData>
+        </div>
+      </Item>
+    </ArticleLink>
+  );
+};
+
+const ArticlesList: React.FC<ArticlesListProps> = ({ articles, alwaysShowAllDetails }) => {
+  if (!articles) return null;
+
+  const hasOnlyOneArticle = articles.length === 1;
+  const { gridLayout = 'tiles', hasSetGridLayout, getGridLayout } = useContext(GridLayoutContext);
+
+  /**
+   * We're taking the flat array of articles [{}, {}, {}...]
+   * and turning it into an array of pairs of articles [[{}, {}], [{}, {}], [{}, {}]...]
+   * This makes it simpler to create the grid we want
+   */
+  const articlePairs = articles.reduce((result, _value, index, array) => {
+    if (index % 2 === 0) {
+      result.push(array.slice(index, index + 2));
+    }
+    return result;
+  }, [] as IArticle[][]);
+
+  useEffect(() => getGridLayout(), []);
+
+  return (
+    <ArticlesListContainer style={{ opacity: hasSetGridLayout ? 1 : 0 }} alwaysShowAllDetails={alwaysShowAllDetails}>
+      {articlePairs.map((ap, index) => {
+        const isEven = index % 2 !== 0;
+        const isOdd = index % 2 !== 1;
+
+        return (
+          // eslint-disable-next-line react/no-array-index-key
+          <List key={index} gridLayout={gridLayout} hasOnlyOneArticle={hasOnlyOneArticle} reverse={isEven}>
+            <ListItem article={ap[0]} narrow={isEven} />
+            <ListItem article={ap[1]} narrow={isOdd} />
+          </List>
+        );
+      })}
+    </ArticlesListContainer>
+  );
+};
+
+export default ArticlesList;

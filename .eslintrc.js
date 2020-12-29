@@ -1,8 +1,17 @@
 const configs = ['prettier/react', 'plugin:prettier/recommended'];
 const rules = {
-  'max-len': ['error', { code: 140, ignoreUrls: true }],
+  'max-len': [
+    'error',
+    {
+      code: 140,
+      ignoreUrls: true,
+      ignoreComments: true,
+      ignoreStrings: true,
+    },
+  ],
   'react/prop-types': 'off',
   'import/prefer-default-export': 'off',
+  'react/jsx-props-no-spreading': 'off',
 };
 
 module.exports = {
@@ -30,6 +39,7 @@ module.exports = {
       },
       rules: {
         ...rules,
+        '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
       },
     },
   ],

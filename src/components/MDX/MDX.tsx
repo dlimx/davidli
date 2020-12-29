@@ -4,22 +4,23 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { useColorMode } from 'theme-ui';
 
-import Anchor from '@components/Anchor';
-import Blockquote from '@components/Blockquote';
-import Code from '@components/Code';
-import Headings from '@components/Headings';
-import HorizontalRule from '@components/HorizontalRule';
-import Lists from '@components/Lists';
-import Paragraph from '@components/Paragraph';
-import Tables from '@components/Tables';
-import { ImageZoom } from '@components/Image';
-import Figcaption from '@components/Figcaption';
 import * as shortcodes from '@blocks/kit';
-import mediaqueries from '@styles/media';
-import { toKebabCase } from '@utils';
+import { toKebabCase } from '../../utils';
+import Anchor from '../Anchor';
+import Blockquote from '../Blockquote';
+import Code from '../Code';
+import Headings from '../Headings';
+import HorizontalRule from '../HorizontalRule';
+import Lists from '../Lists';
+import Paragraph from '../Paragraph';
+import Tables from '../Tables';
+import { ImageZoom } from '../Image';
+import Figcaption from '../Figcaption';
+import mediaqueries from '../../styles/media';
+import { IPrism, IStyledProps } from '../../types/style';
 
 const components = {
   ...shortcodes,
@@ -48,23 +49,6 @@ const components = {
 interface MDXProps {
   content: React.ReactNode;
 }
-
-const MDX: React.FC<MDXProps> = ({ content, children, ...props }) => {
-  const [colorMode] = useColorMode();
-
-  return (
-    <MDXProvider components={components}>
-      <MDXBody>
-        <MDXRenderer isDark={colorMode === 'dark'} {...props}>
-          {content}
-        </MDXRenderer>
-        {children}
-      </MDXBody>
-    </MDXProvider>
-  );
-};
-
-export default MDX;
 
 const IMAGE_WIDTHS = {
   regular: '680px',
@@ -125,7 +109,7 @@ const HeadingsCSS = css`
   }
 `;
 
-const PrismCSS = p => css`
+const PrismCSS = (p: IStyledProps) => css`
   .prism-code {
     overflow: auto;
     width: 100%;
@@ -143,7 +127,7 @@ const PrismCSS = p => css`
 
       ${Object.keys(p.theme.colors.prism)
         .map(key => {
-          return `.${toKebabCase(key)}{color:${p.theme.colors.prism[key]};}`;
+          return `.${toKebabCase(key)}{color:${p.theme.colors.prism[key as keyof IPrism]};}`;
         })
         .reduce((curr, next) => curr + next, ``)};
 
@@ -336,3 +320,20 @@ const MDXBody = styled.div`
   ${PrismCSS}
   ${ImageCSS}
 `;
+
+const MDX: React.FC<MDXProps> = ({ content, children, ...props }) => {
+  const [colorMode] = useColorMode();
+
+  return (
+    <MDXProvider components={components}>
+      <MDXBody>
+        <MDXRenderer isDark={colorMode === 'dark'} {...props}>
+          {content as any}
+        </MDXRenderer>
+        {children}
+      </MDXBody>
+    </MDXProvider>
+  );
+};
+
+export default MDX;

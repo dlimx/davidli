@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
-import Section from '@components/Section';
-import Bio from '@components/Bio';
-import Icons from '@icons';
-import mediaqueries from '@styles/media';
-import { IAuthor } from '@types';
+import Icons from '../../icons';
+import mediaqueries from '../../styles/media';
+import { IAuthor } from '../../types/types';
+import Bio from '../../components/Bio';
+import Section from '../../components/Section';
 
 import { GridLayoutContext } from './Articles.List.Context';
 
@@ -26,55 +26,6 @@ const authorQuery = graphql`
     }
   }
 `;
-
-const ArticlesHero: React.FC<IAuthor> = ({ authors }) => {
-  const { gridLayout = 'tiles', hasSetGridLayout, setGridLayout } = useContext(GridLayoutContext);
-
-  const results = useStaticQuery(authorQuery);
-  const hero = results.site.edges[0].node.siteMetadata.hero;
-  const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
-  const featuredAuthor = authors.find(author => author.featured);
-
-  if (!featuredAuthor) {
-    throw new Error(`
-      No featured Author found.
-      Please ensure you have at least featured Author.
-  `);
-  }
-
-  return (
-    <Section relative id="Articles__Hero">
-      <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
-        <HeroHeading dangerouslySetInnerHTML={{ __html: hero.heading }} />
-      </HeadingContainer>
-      <SubheadingContainer>
-        <Bio author={featuredAuthor} />
-        <GridControlsContainer>
-          <GridButton
-            onClick={() => setGridLayout('tiles')}
-            active={tilesIsActive}
-            data-a11y="false"
-            title="Show articles in Tile grid"
-            aria-label="Show articles in Tile grid"
-          >
-            <Icons.Tiles />
-          </GridButton>
-          <GridButton
-            onClick={() => setGridLayout('rows')}
-            active={!tilesIsActive}
-            data-a11y="false"
-            title="Show articles in Row grid"
-            aria-label="Show articles in Row grid"
-          >
-            <Icons.Rows />
-          </GridButton>
-        </GridControlsContainer>
-      </SubheadingContainer>
-    </Section>
-  );
-};
-
-export default ArticlesHero;
 
 const SubheadingContainer = styled.div`
   display: flex;
@@ -176,3 +127,52 @@ const GridButton = styled.button<{ active: boolean }>`
     }
   }
 `;
+
+const ArticlesHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
+  const { gridLayout = 'tiles', hasSetGridLayout, setGridLayout } = useContext(GridLayoutContext);
+
+  const results = useStaticQuery(authorQuery);
+  const { hero } = results.site.edges[0].node.siteMetadata;
+  const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
+  const featuredAuthor = authors.find((author: IAuthor) => author.featured);
+
+  if (!featuredAuthor) {
+    throw new Error(`
+      No featured Author found.
+      Please ensure you have at least featured Author.
+  `);
+  }
+
+  return (
+    <Section relative id="Articles__Hero">
+      <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
+        <HeroHeading dangerouslySetInnerHTML={{ __html: hero.heading }} />
+      </HeadingContainer>
+      <SubheadingContainer>
+        <Bio author={featuredAuthor} />
+        <GridControlsContainer>
+          <GridButton
+            onClick={() => setGridLayout('tiles')}
+            active={tilesIsActive}
+            data-a11y="false"
+            title="Show articles in Tile grid"
+            aria-label="Show articles in Tile grid"
+          >
+            <Icons.Tiles />
+          </GridButton>
+          <GridButton
+            onClick={() => setGridLayout('rows')}
+            active={!tilesIsActive}
+            data-a11y="false"
+            title="Show articles in Row grid"
+            aria-label="Show articles in Row grid"
+          >
+            <Icons.Rows />
+          </GridButton>
+        </GridControlsContainer>
+      </SubheadingContainer>
+    </Section>
+  );
+};
+
+export default ArticlesHero;

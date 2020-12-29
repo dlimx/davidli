@@ -2,7 +2,8 @@ import React from 'react';
 
 import CodeBlock from './Code.Prism';
 
-function preToCodeBlock(preProps) {
+// eslint-disable-next-line consistent-return
+function preToCodeBlock(preProps: any) {
   if (preProps.children && preProps.children.props && preProps.children.props.mdxType === 'code') {
     const { children: codeString, className = '', ...props } = preProps.children.props;
 
@@ -22,9 +23,8 @@ const CodePre: React.FC<{}> = preProps => {
 
   if (props) {
     return <CodeBlock {...props} />;
-  } else {
-    return <pre {...preProps} />;
   }
+  return <pre {...preProps} />;
 };
 
 export default CodePre;

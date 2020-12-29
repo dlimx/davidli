@@ -1,75 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Link } from 'gatsby';
 
-import Headings from '@components/Headings';
-import Image from '@components/Image';
-
-import mediaqueries from '@styles/media';
-
-import { IArticle } from '@types';
+import mediaqueries from '../../styles/media';
+import { IArticle } from '../../types/types';
+import Headings from '../../components/Headings';
+import Image from '../../components/Image';
 
 interface ArticlesNextProps {
   articles: IArticle[];
 }
 
-/**
- * Sits at the bottom of our Article page. Shows the next 2 on desktop and the
- * next 1 on mobile!
- *
- *  [..............], [.........]
- *  [.....LONG.....], [..SHORT..]
- *  [..............], [.........]
- *
- * This does NOT use Articles.List because there's a special case of only have 1 article
- * as the next one suggested article, which requires special styling we didn't want to
- * mix into the generic list component.
- */
-const ArticlesNext: React.FC<ArticlesNextProps> = ({ articles }) => {
-  if (!articles) return null;
-  const numberOfArticles = articles.length;
-  return (
-    <Grid numberOfArticles={numberOfArticles}>
-      <GridItem article={articles[0]} />
-      <GridItem article={articles[1]} narrow />
-    </Grid>
-  );
-};
-
-export default ArticlesNext;
-
-interface GridItemProps {
-  article: IArticle;
-  narrow?: boolean;
-}
-
-const GridItem: React.FC<GridItemProps> = ({ article, narrow }) => {
-  if (!article) return null;
-
-  const hasOverflow = narrow && article.title.length > 35;
-  const imageSource = narrow ? article.hero.narrow : article.hero.regular;
-
-  return (
-    <ArticleLink to={article.slug} data-a11y="false" narrow={narrow ? 'true' : 'false'}>
-      <Item>
-        <ImageContainer>
-          <Image src={imageSource} />
-        </ImageContainer>
-        <Title dark hasOverflow={hasOverflow}>
-          {article.title}
-        </Title>
-        <Excerpt hasOverflow={hasOverflow}>{article.excerpt}</Excerpt>
-        <MetaData>
-          {article.date} · {article.timeToRead} min read
-        </MetaData>{' '}
-      </Item>
-    </ArticleLink>
-  );
-};
-
-const wide = '1fr';
-const narrow = '457px';
+const widePx = '1fr';
+const narrowPx = '457px';
 
 const limitToTwoLines = css`
   text-overflow: ellipsis;
@@ -93,12 +37,11 @@ const Grid = styled.div<{ numberOfArticles: number }>`
       grid-template-columns: 1fr;
       grid-template-rows: 1
     `;
-    } else {
-      return `
-      grid-template-columns: ${wide} ${narrow};
+    }
+    return `
+      grid-template-columns: ${widePx} ${narrowPx};
       grid-template-rows: 2;
       `;
-    }
   }}
   column-gap: 30px;
   margin: 0 auto;
@@ -113,7 +56,7 @@ const Grid = styled.div<{ numberOfArticles: number }>`
   `}
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.div<{ narrow?: boolean }>`
   position: relative;
   height: 280px;
   box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
@@ -151,7 +94,7 @@ const Item = styled.div`
   }
 `;
 
-const Title = styled(Headings.h3)`
+const Title = styled(Headings.h3)<{ hasOverflow?: boolean; dark?: boolean }>`
   font-size: 22px;
   line-height: 1.4;
   margin-bottom: ${p => (p.hasOverflow ? '45px' : '10px')};
@@ -170,7 +113,7 @@ const Title = styled(Headings.h3)`
   `}
 `;
 
-const Excerpt = styled.p<{ narrow: boolean; hasOverflow: boolean }>`
+const Excerpt = styled.p<{ narrow?: boolean; hasOverflow?: boolean }>`
   ${limitToTwoLines};
   font-size: 16px;
   margin-bottom: 10px;
@@ -251,3 +194,57 @@ const ArticleLink = styled(Link)<{ narrow: string }>`
     }
   `}
 `;
+
+interface GridItemProps {
+  article: IArticle;
+  narrow?: boolean;
+}
+
+const GridItem: React.FC<GridItemProps> = ({ article, narrow }) => {
+  if (!article) return null;
+
+  const hasOverflow = narrow && article.title.length > 35;
+  const imageSource = narrow ? article.hero.narrow : article.hero.regular;
+
+  return (
+    <ArticleLink to={article.slug} data-a11y="false" narrow={narrow ? 'true' : 'false'}>
+      <Item>
+        <ImageContainer>
+          <Image src={imageSource} />
+        </ImageContainer>
+        <Title dark hasOverflow={hasOverflow}>
+          {article.title}
+        </Title>
+        <Excerpt hasOverflow={hasOverflow}>{article.excerpt}</Excerpt>
+        <MetaData>
+          {article.date} · {article.timeToRead} min read
+        </MetaData>{' '}
+      </Item>
+    </ArticleLink>
+  );
+};
+
+/**
+ * Sits at the bottom of our Article page. Shows the next 2 on desktop and the
+ * next 1 on mobile!
+ *
+ *  [..............], [.........]
+ *  [.....LONG.....], [..SHORT..]
+ *  [..............], [.........]
+ *
+ * This does NOT use Articles.List because there's a special case of only have 1 article
+ * as the next one suggested article, which requires special styling we didn't want to
+ * mix into the generic list component.
+ */
+const ArticlesNext: React.FC<ArticlesNextProps> = ({ articles }) => {
+  if (!articles) return null;
+  const numberOfArticles = articles.length;
+  return (
+    <Grid numberOfArticles={numberOfArticles}>
+      <GridItem article={articles[0]} />
+      <GridItem article={articles[1]} narrow />
+    </Grid>
+  );
+};
+
+export default ArticlesNext;

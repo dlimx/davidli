@@ -1,6 +1,7 @@
 import prism from './prism';
+import { IColors } from '../types/style';
 
-export default {
+const colors: IColors = {
   prism,
 
   primary: '#000',
@@ -40,3 +41,5 @@ export default {
     },
   },
 };
+
+export default colors;

@@ -2,23 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
-import Image from '@components/Image';
-import { IAuthor } from '@types';
-
-const Bio: React.FC<IAuthor> = ({ author }) => {
-  return (
-    <BioContainer>
-      <BioAvatar as={author.authorsPage ? Link : 'div'} to={author.slug} data-a11y="false" aria-label="Author's bio">
-        <BioAvatarInner>
-          <RoundedImage src={author.avatar.medium} />
-        </BioAvatarInner>
-      </BioAvatar>
-      <BioText dangerouslySetInnerHTML={{ __html: author.bio }} />
-    </BioContainer>
-  );
-};
-
-export default Bio;
+import Image from '../Image';
+import { IAuthor } from '../../types/types';
 
 const BioContainer = styled.div`
   display: flex;
@@ -27,7 +12,7 @@ const BioContainer = styled.div`
   left: -10px;
 `;
 
-const BioAvatar = styled.div`
+const BioAvatar = styled.div<{ to: string }>`
   display: block;
   position: relative;
   height: 40px;
@@ -83,3 +68,18 @@ const BioText = styled.p`
     text-decoration: underline;
   }
 `;
+
+const Bio: React.FC<{ author: IAuthor }> = ({ author }) => {
+  return (
+    <BioContainer>
+      <BioAvatar as={author.authorsPage ? Link : 'div'} to={author.slug} data-a11y="false" aria-label="Author's bio">
+        <BioAvatarInner>
+          <RoundedImage src={author.avatar.medium} />
+        </BioAvatarInner>
+      </BioAvatar>
+      <BioText dangerouslySetInnerHTML={{ __html: author.bio }} />
+    </BioContainer>
+  );
+};
+
+export default Bio;

@@ -34,7 +34,14 @@ export interface IAuthor {
   avatar: {
     image: IGatsbyImageFluid;
     full: IGatsbyImageFluid;
+    medium: IGatsbyImageFluid;
+    large: IGatsbyImageFluid;
+    small: IGatsbyImageFluid;
   };
+  social?: {
+    name: string;
+    url: string;
+  }[];
 }
 
 export interface IArticle {
@@ -42,16 +49,23 @@ export interface IArticle {
   authors: IAuthor[];
   excerpt: string;
   body: string;
+  title: string;
   id: string;
   hero: {
     full: IGatsbyImageFluid;
     preview: IGatsbyImageFluid;
     regular: IGatsbyImageFluid;
-    seo: string;
+    narrow: IGatsbyImageFluid;
+    seo: {
+      src?: string;
+    };
   };
-  timeToRead: number;
   date: string;
   secret: boolean;
+  canonical_url?: string;
+  dateForSEO?: string;
+  timeToRead?: string;
+  subscription?: boolean;
 }
 
 interface IArticleQuery {
@@ -68,16 +82,48 @@ export interface IProgress {
   onClose?: () => void;
 }
 
-export type Icon = React.FC<{
-  fill: string;
+export type IIcon = React.FC<{
+  fill?: string;
+  width?: string;
+  height?: string;
 }>;
 
-export type Template = React.FC<{
-  pageContext: {
-    article: IArticle;
-    authors: IAuthor[];
-    mailchimp: boolean;
-    next: IArticle[];
+interface IPageContext extends IPaginator {
+  article: IArticle;
+  authors: IAuthor[];
+  mailchimp: boolean;
+  next: IArticle[];
+  additionalContext: {
+    author: IAuthor;
+    authors?: IAuthor[];
   };
-  location: Location;
+  group: IArticle[];
+}
+
+export type Template = React.FC<{
+  pageContext: IPageContext;
+  location?: Location;
 }>;
+
+export interface IOption {
+  name: string;
+}
+
+export interface IMeta {
+  name?: string;
+  content?: string;
+  charset?: string;
+  'http-equiv'?: string;
+  itemprop?: string;
+  property?: string;
+  value?: string;
+}
+
+declare global {
+  interface Document {
+    selection?: {
+      type?: string;
+      createRange?: () => { text: string; parentElement: Function };
+    };
+  }
+}

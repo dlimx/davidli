@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
-import mediaqueries from '@styles/media';
+import mediaqueries from '../../styles/media';
+import { IStyledProps } from '../../types/style';
 
 /**
  * Example:
  * <Heading.h1>Lorem Ipsum</Heading.h1>
  */
 
-const commonStyles = p => css`
+const commonStyles = (p: IStyledProps) => css`
   font-weight: bold;
   color: ${p.theme.colors.primary};
   font-family: ${p.theme.fonts.serif};

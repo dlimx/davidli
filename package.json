@@ -16,15 +16,16 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "start": "npm run dev",
-    "test": "npm run type-check && npm run lint"
+    "test": "npm run type-check && npm run lint",
+    "typecheck": "tsc"
   },
   "engines": {
     "node": ">=12.0.0"
   },
   "dependencies": {
     "@blocks/kit": "^0.0.28",
-    "@emotion/core": "^10.0.14",
-    "@emotion/styled": "^10.0.14",
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
     "@mdx-js/mdx": "^1.1.0",
     "@mdx-js/react": "^1.0.27",
     "@raae/gatsby-remark-oembed": "^0.1.1",
@@ -73,13 +74,16 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.8",
+    "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^12.0.10",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/react-helmet": "^5.0.8",
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/parser": "^2.6.0",
-    "eslint": "^6.6.0",
+    "@types/react-outside-click-handler": "^1.3.0",
+    "@types/theme-ui": "^0.3.7",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.16.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.22.1",

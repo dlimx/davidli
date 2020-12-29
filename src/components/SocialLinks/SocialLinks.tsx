@@ -1,78 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Icons from '@icons';
-import mediaqueries from '@styles/media';
+import Icons from '../../icons';
+import mediaqueries from '../../styles/media';
+import { IIcon } from '../../types/types';
 
 interface SocialLinksProps {
-  links: {
+  links?: {
     name: string;
     url: string;
   }[];
-  fill: string;
+  fill?: string;
 }
-
-const icons = {
-  behance: Icons.Behance,
-  dribbble: Icons.Dribbble,
-  linkedin: Icons.LinkedIn,
-  twitter: Icons.Twitter,
-  facebook: Icons.Facebook,
-  instagram: Icons.Instagram,
-  devto: Icons.DevTo,
-  github: Icons.Github,
-  stackoverflow: Icons.Stackoverflow,
-  youtube: Icons.YouTube,
-  medium: Icons.Medium,
-  notion: Icons.Notion,
-  unsplash: Icons.Unsplash,
-  patreon: Icons.Patreon,
-  paypal: Icons.Paypal,
-  digitalocean: Icons.DigitalOcean,
-  tripadvisor: Icons.TripAdvisor,
-  buymeacoffee: Icons.Buymeacoffee,
-  mailto: Icons.Mailto,
-  url: Icons.Url,
-};
-
-const getHostname = url => {
-  return new URL(url.toLowerCase()).hostname.replace(/www|com|net|\.so|org|[.-]/g, '').split('.')[0];
-};
-
-const getServicename = url => {
-  return url.toLowerCase().split(':')[0];
-};
-
-const SocialLinks: React.FC<SocialLinksProps> = ({ links, fill = '#73737D' }) => {
-  if (!links) return null;
-
-  return (
-    <>
-      {links.map(option => {
-        const name = option.name || getHostname(option.url) || getServicename(option.url);
-        const Icon = icons[name] ? icons[name] : icons['url'];
-        if (!Icon) {
-          throw new Error(`unsupported social link name=${name} / url=${option.url}`);
-        }
-        return (
-          <SocialIconContainer
-            key={option.url}
-            target="_blank"
-            rel="noopener nofollow"
-            data-a11y="false"
-            aria-label={`Link to ${option.url}`}
-            href={option.url}
-          >
-            <Icon fill={fill} />
-            <Hidden>Link to ${option.url}</Hidden>
-          </SocialIconContainer>
-        );
-      })}
-    </>
-  );
-};
-
-export default SocialLinks;
 
 const SocialIconContainer = styled.a`
   position: relative;
@@ -124,3 +63,65 @@ const Hidden = styled.span`
   overflow: hidden;
   display: inline-block;
 `;
+
+const icons: Record<string, IIcon> = {
+  behance: Icons.Behance,
+  dribbble: Icons.Dribbble,
+  linkedin: Icons.LinkedIn,
+  twitter: Icons.Twitter,
+  facebook: Icons.Facebook,
+  instagram: Icons.Instagram,
+  devto: Icons.DevTo,
+  github: Icons.Github,
+  stackoverflow: Icons.Stackoverflow,
+  youtube: Icons.YouTube,
+  medium: Icons.Medium,
+  notion: Icons.Notion,
+  unsplash: Icons.Unsplash,
+  patreon: Icons.Patreon,
+  paypal: Icons.Paypal,
+  digitalocean: Icons.DigitalOcean,
+  tripadvisor: Icons.TripAdvisor,
+  buymeacoffee: Icons.Buymeacoffee,
+  mailto: Icons.Mailto,
+  url: Icons.Url,
+};
+
+const getHostname = (url: string) => {
+  return new URL(url.toLowerCase()).hostname.replace(/www|com|net|\.so|org|[.-]/g, '').split('.')[0];
+};
+
+const getServicename = (url: string) => {
+  return url.toLowerCase().split(':')[0];
+};
+
+const SocialLinks: React.FC<SocialLinksProps> = ({ links, fill = '#73737D' }) => {
+  if (!links) return null;
+
+  return (
+    <>
+      {links.map(option => {
+        const name = option.name || getHostname(option.url) || getServicename(option.url);
+        const Icon = icons[name] ? icons[name] : icons.url;
+        if (!Icon) {
+          throw new Error(`unsupported social link name=${name} / url=${option.url}`);
+        }
+        return (
+          <SocialIconContainer
+            key={option.url}
+            target="_blank"
+            rel="noopener nofollow"
+            data-a11y="false"
+            aria-label={`Link to ${option.url}`}
+            href={option.url}
+          >
+            <Icon fill={fill} />
+            <Hidden>Link to ${option.url}</Hidden>
+          </SocialIconContainer>
+        );
+      })}
+    </>
+  );
+};
+
+export default SocialLinks;

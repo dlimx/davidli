@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Subscription from '@components/Subscription';
-
-import { Template } from '@types';
+import { Template } from '../types/types';
+import Subscription from '../components/Subscription';
 
 const ArticleFooter: Template = ({ pageContext }) => {
   const { article, mailchimp } = pageContext;

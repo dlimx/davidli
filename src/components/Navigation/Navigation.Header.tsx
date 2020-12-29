@@ -1,129 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import { useColorMode } from 'theme-ui';
 
-import Section from '@components/Section';
-import Logo from '@components/Logo';
+import Icons from '../../icons';
+import { copyToClipboard, getWindowDimensions, getBreakpointFromTheme } from '../../utils';
+import Section from '../Section';
+import Logo from '../Logo';
 
-import Icons from '@icons';
-import mediaqueries from '@styles/media';
-import { copyToClipboard, getWindowDimensions, getBreakpointFromTheme } from '@utils';
-
-const DarkModeToggle: React.FC<{}> = () => {
-  const [colorMode, setColorMode] = useColorMode();
-  const isDark = colorMode === `dark`;
-
-  function toggleColorMode(event) {
-    event.preventDefault();
-    setColorMode(isDark ? `light` : `dark`);
-  }
-
-  return (
-    <IconWrapper
-      isDark={isDark}
-      onClick={toggleColorMode}
-      data-a11y="false"
-      aria-label={isDark ? 'Activate light mode' : 'Activate dark mode'}
-      title={isDark ? 'Activate light mode' : 'Activate dark mode'}
-    >
-      <MoonOrSun isDark={isDark} />
-      <MoonMask isDark={isDark} />
-    </IconWrapper>
-  );
-};
-
-const SharePageButton: React.FC<{}> = () => {
-  const [hasCopied, setHasCopied] = useState<boolean>(false);
-  const [colorMode] = useColorMode();
-  const isDark = colorMode === `dark`;
-  const fill = isDark ? '#fff' : '#000';
-
-  function copyToClipboardOnClick() {
-    if (hasCopied) return;
-
-    copyToClipboard(window.location.href);
-    setHasCopied(true);
-
-    setTimeout(() => {
-      setHasCopied(false);
-    }, 1000);
-  }
-
-  return (
-    <IconWrapper
-      isDark={isDark}
-      onClick={copyToClipboardOnClick}
-      data-a11y="false"
-      aria-label="Copy URL to clipboard"
-      title="Copy URL to clipboard"
-    >
-      <Icons.Link fill={fill} />
-      <ToolTip isDark={isDark} hasCopied={hasCopied}>
-        Copied
-      </ToolTip>
-    </IconWrapper>
-  );
-};
-
-const NavigationHeader: React.FC<{}> = () => {
-  const [showBackArrow, setShowBackArrow] = useState<boolean>(false);
-  const [previousPath, setPreviousPath] = useState<string>('/');
-
-  const rootPath = '/';
-  const basePath = '/';
-
-  const [colorMode] = useColorMode();
-  const fill = colorMode === 'dark' ? '#fff' : '#000';
-
-  useEffect(() => {
-    const { width } = getWindowDimensions();
-    const phablet = getBreakpointFromTheme('phablet');
-
-    const prev = localStorage.getItem('previousPath');
-    const previousPathWasHomepage = prev === (rootPath || basePath) || (prev && prev.includes('/page/'));
-    const currentPathIsHomepage = location.pathname === (rootPath || basePath) || location.pathname.includes('/page/');
-
-    setShowBackArrow(previousPathWasHomepage && !currentPathIsHomepage && width <= phablet);
-    setPreviousPath(prev);
-  }, []);
-
-  return (
-    <Section>
-      <NavContainer>
-        <LogoLink
-          to="/"
-          data-a11y="false"
-          title="Navigate back to the homepage"
-          aria-label="Navigate back to the homepage"
-          back={showBackArrow ? 'true' : 'false'}
-        >
-          {showBackArrow && (
-            <BackArrowIconContainer>
-              <Icons.ChevronLeft fill={fill} />
-            </BackArrowIconContainer>
-          )}
-          <Logo fill={fill} />
-          <Hidden>Navigate back to the homepage</Hidden>
-        </LogoLink>
-        <NavControls>
-          {showBackArrow ? (
-            <button onClick={() => navigate(previousPath)} title="Navigate back to the homepage" aria-label="Navigate back to the homepage">
-              <Icons.Ex fill={fill} />
-            </button>
-          ) : (
-            <>
-              <SharePageButton />
-              <DarkModeToggle />
-            </>
-          )}
-        </NavControls>
-      </NavContainer>
-    </Section>
-  );
-};
-
-export default NavigationHeader;
+import mediaqueries from '../../styles/media';
 
 const BackArrowIconContainer = styled.div`
   transition: 0.2s transform var(--ease-out-quad);
@@ -334,3 +219,123 @@ const Hidden = styled.span`
   visibility: hidden;
   overflow: hidden;
 `;
+const DarkModeToggle: React.FC<{}> = () => {
+  const [colorMode, setColorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
+
+  function toggleColorMode(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    setColorMode(isDark ? `light` : `dark`);
+  }
+
+  return (
+    <IconWrapper
+      isDark={isDark}
+      onClick={toggleColorMode}
+      data-a11y="false"
+      aria-label={isDark ? 'Activate light mode' : 'Activate dark mode'}
+      title={isDark ? 'Activate light mode' : 'Activate dark mode'}
+    >
+      <MoonOrSun isDark={isDark} />
+      <MoonMask isDark={isDark} />
+    </IconWrapper>
+  );
+};
+
+const SharePageButton: React.FC<{}> = () => {
+  const [hasCopied, setHasCopied] = useState<boolean>(false);
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
+  const fill = isDark ? '#fff' : '#000';
+
+  function copyToClipboardOnClick() {
+    if (hasCopied) return;
+
+    copyToClipboard(window.location.href);
+    setHasCopied(true);
+
+    setTimeout(() => {
+      setHasCopied(false);
+    }, 1000);
+  }
+
+  return (
+    <IconWrapper
+      isDark={isDark}
+      onClick={copyToClipboardOnClick}
+      data-a11y="false"
+      aria-label="Copy URL to clipboard"
+      title="Copy URL to clipboard"
+    >
+      <Icons.Link fill={fill} />
+      <ToolTip isDark={isDark} hasCopied={hasCopied}>
+        Copied
+      </ToolTip>
+    </IconWrapper>
+  );
+};
+
+const NavigationHeader: React.FC<{}> = () => {
+  const [showBackArrow, setShowBackArrow] = useState<boolean>(false);
+  const [previousPath, setPreviousPath] = useState<string>('/');
+
+  const rootPath = '/';
+  const basePath = '/';
+
+  const [colorMode] = useColorMode();
+  const fill = colorMode === 'dark' ? '#fff' : '#000';
+
+  useEffect(() => {
+    const { width } = getWindowDimensions();
+    const phablet = getBreakpointFromTheme('phablet');
+
+    const prev = localStorage.getItem('previousPath');
+    const previousPathWasHomepage = prev === (rootPath || basePath) || (prev && prev.includes('/page/'));
+    // eslint-disable-next-line no-restricted-globals
+    const currentPathIsHomepage = location.pathname === (rootPath || basePath) || location.pathname.includes('/page/');
+
+    setShowBackArrow(!!(previousPathWasHomepage && !currentPathIsHomepage && width <= phablet));
+    setPreviousPath(prev!);
+  }, []);
+
+  return (
+    <Section>
+      <NavContainer>
+        <LogoLink
+          to="/"
+          data-a11y="false"
+          title="Navigate back to the homepage"
+          aria-label="Navigate back to the homepage"
+          back={showBackArrow ? 'true' : 'false'}
+        >
+          {showBackArrow && (
+            <BackArrowIconContainer>
+              <Icons.ChevronLeft fill={fill} />
+            </BackArrowIconContainer>
+          )}
+          <Logo fill={fill} />
+          <Hidden>Navigate back to the homepage</Hidden>
+        </LogoLink>
+        <NavControls>
+          {showBackArrow ? (
+            <button
+              type="button"
+              onClick={() => navigate(previousPath)}
+              title="Navigate back to the homepage"
+              aria-label="Navigate back to the homepage"
+            >
+              <Icons.Ex fill={fill} />
+            </button>
+          ) : (
+            <>
+              <SharePageButton />
+              <DarkModeToggle />
+            </>
+          )}
+        </NavControls>
+      </NavContainer>
+    </Section>
+  );
+};
+
+export default NavigationHeader;

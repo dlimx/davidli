@@ -1,33 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Image from '@components/Image';
+import mediaqueries from '../../styles/media';
+import { IAuthor } from '../../types/types';
+import Image from '../../components/Image';
 
-import mediaqueries from '@styles/media';
-import { IAuthor } from '@types';
-
-import SocialLinks from '@components/SocialLinks';
+import SocialLinks from '../../components/SocialLinks';
 
 interface AuthorHeroProps {
   author: IAuthor;
 }
-
-const AuthorHero: React.FC<AuthorHeroProps> = ({ author }) => {
-  return (
-    <Hero>
-      <HeroImage>
-        <RoundedImage src={author.avatar.large} />
-      </HeroImage>
-      <Heading>{author.name}</Heading>
-      <Subheading dangerouslySetInnerHTML={{ __html: author.bio }}></Subheading>
-      <Social>
-        <SocialLinks links={author.social} />
-      </Social>
-    </Hero>
-  );
-};
-
-export default AuthorHero;
 
 const Hero = styled.div`
   position: relative;
@@ -103,3 +85,20 @@ const Social = styled.div`
     font-size: 14px;
   `}
 `;
+
+const AuthorHero: React.FC<AuthorHeroProps> = ({ author }) => {
+  return (
+    <Hero>
+      <HeroImage>
+        <RoundedImage src={author.avatar.large} />
+      </HeroImage>
+      <Heading>{author.name}</Heading>
+      <Subheading dangerouslySetInnerHTML={{ __html: author.bio }} />
+      <Social>
+        <SocialLinks links={author.social} />
+      </Social>
+    </Hero>
+  );
+};
+
+export default AuthorHero;

@@ -1,40 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Headings from '@components/Headings';
-import Image, { ImagePlaceholder } from '@components/Image';
-
-import mediaqueries from '@styles/media';
-import { IArticle, IAuthor } from '@types';
+import mediaqueries from '../../styles/media';
+import { IArticle, IAuthor } from '../../types/types';
+import Headings from '../../components/Headings';
+import Image, { ImagePlaceholder } from '../../components/Image';
 
 import ArticleAuthors from './Article.Authors';
-
-interface ArticleHeroProps {
-  article: IArticle;
-  authors: IAuthor[];
-}
-
-const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
-  const hasCoAUthors = authors.length > 1;
-  const hasHeroImage = article.hero && Object.keys(article.hero.full).length !== 0 && article.hero.full.constructor === Object;
-
-  return (
-    <Hero>
-      <Header>
-        <HeroHeading>{article.title}</HeroHeading>
-        <HeroSubtitle hasCoAUthors={hasCoAUthors}>
-          <ArticleAuthors authors={authors} />
-          <ArticleMeta hasCoAUthors={hasCoAUthors}>
-            {article.date} · {article.timeToRead} min read
-          </ArticleMeta>
-        </HeroSubtitle>
-      </Header>
-      <HeroImage id="ArticleImage__Hero">{hasHeroImage ? <Image src={article.hero.full} /> : <ImagePlaceholder />}</HeroImage>
-    </Hero>
-  );
-};
-
-export default ArticleHero;
 
 const Hero = styled.div`
   ${p => mediaqueries.phablet`
@@ -64,8 +36,8 @@ const Hero = styled.div`
   `}
 `;
 
-const ArticleMeta = styled.div<{ hasCoAUthors: boolean }>`
-  margin-left: ${p => (p.hasCoAUthors ? '10px' : '0')};
+const ArticleMeta = styled.div<{ hasCoAuthors: boolean }>`
+  margin-left: ${p => (p.hasCoAuthors ? '10px' : '0')};
 
   ${mediaqueries.phablet`
     margin-left: 0;
@@ -118,7 +90,7 @@ const HeroHeading = styled(Headings.h1)`
   `}
 `;
 
-const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
+const HeroSubtitle = styled.div<{ hasCoAuthors: boolean }>`
   position: relative;
   display: flex;
   font-size: 18px;
@@ -128,7 +100,7 @@ const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
     font-size: 14px;
     flex-direction: column;
 
-    ${p.hasCoAUthors &&
+    ${p.hasCoAuthors &&
       `
         &::before {
           content: '';
@@ -175,3 +147,30 @@ const HeroImage = styled.div`
     }
 `}
 `;
+
+interface ArticleHeroProps {
+  article: IArticle;
+  authors: IAuthor[];
+}
+
+const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
+  const hasCoAuthors = authors.length > 1;
+  const hasHeroImage = article.hero && Object.keys(article.hero.full).length !== 0 && article.hero.full.constructor === Object;
+
+  return (
+    <Hero>
+      <Header>
+        <HeroHeading>{article.title}</HeroHeading>
+        <HeroSubtitle hasCoAuthors={hasCoAuthors}>
+          <ArticleAuthors authors={authors} />
+          <ArticleMeta hasCoAuthors={hasCoAuthors}>
+            {article.date} · {article.timeToRead} min read
+          </ArticleMeta>
+        </HeroSubtitle>
+      </Header>
+      <HeroImage id="ArticleImage__Hero">{hasHeroImage ? <Image src={article.hero.full} /> : <ImagePlaceholder />}</HeroImage>
+    </Hero>
+  );
+};
+
+export default ArticleHero;

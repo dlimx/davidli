@@ -1,66 +1,11 @@
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import React, { useState } from 'react';
 
-import Section from '@components/Section';
-import Headings from '@components/Headings';
-
 import styled from '@emotion/styled';
-import mediaqueries from '@styles/media';
+import Section from '../Section';
+import Headings from '../Headings';
 
-const Subscription: React.FC<{}> = () => {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    addToMailchimp(email)
-      .then(data => {
-        if (data.result === 'error') {
-          throw data;
-        }
-
-        setSubscribed(true);
-        setEmail('');
-
-        setTimeout(() => {
-          setSubscribed(false);
-        }, 6000);
-      })
-      .catch(error => {
-        setError(error.msg);
-      });
-  }
-
-  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(event.currentTarget.value);
-    setError('');
-  }
-
-  return (
-    <Section narrow>
-      <SubscriptionContainer>
-        <Content>
-          <Heading>Join our email list and get notified about new content</Heading>
-          <Text>
-            Be the first to receive our latest content with the ability to opt-out at anytime. We promise to not spam your inbox or share
-            your email with any third parties.
-          </Text>
-          <Form onSubmit={handleSubmit} hasError={error}>
-            <Input placeholder="your@email.com" name="email" type="email" value={email} onChange={handleEmailChange} hasError={error} />
-            <Button type="submit" hasError={error} subscribed={subscribed} disabled={subscribed}>
-              {subscribed ? <CheckMarkIcon /> : 'Subscribe'}
-            </Button>
-            {error && <Error dangerouslySetInnerHTML={{ __html: error }} />}
-          </Form>
-        </Content>
-      </SubscriptionContainer>
-    </Section>
-  );
-};
-
-export default Subscription;
+import mediaqueries from '../../styles/media';
 
 const SubscriptionContainer = styled.div`
   position: relative;
@@ -239,3 +184,58 @@ const CheckMarkIcon = () => (
     />
   </svg>
 );
+
+const Subscription: React.FC<{}> = () => {
+  const [email, setEmail] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    addToMailchimp(email)
+      .then((data: any) => {
+        if (data.result === 'error') {
+          throw data;
+        }
+
+        setSubscribed(true);
+        setEmail('');
+
+        setTimeout(() => {
+          setSubscribed(false);
+        }, 6000);
+      })
+      .catch((error: any) => {
+        setErrorMsg(error.msg);
+      });
+  }
+
+  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(event.currentTarget.value);
+    setErrorMsg('');
+  }
+
+  return (
+    <Section narrow>
+      <SubscriptionContainer>
+        <Content>
+          <Heading>Join our email list and get notified about new content</Heading>
+          <Text>
+            Be the first to receive our latest content with the ability to opt-out at anytime. We promise to not spam your inbox or share
+            your email with any third parties.
+          </Text>
+          <Form onSubmit={handleSubmit} hasError={errorMsg}>
+            <Input placeholder="your@email.com" name="email" type="email" value={email} onChange={handleEmailChange} hasError={errorMsg} />
+            <Button type="submit" hasError={errorMsg} subscribed={subscribed} disabled={subscribed}>
+              {subscribed ? <CheckMarkIcon /> : 'Subscribe'}
+            </Button>
+            {errorMsg && <Error dangerouslySetInnerHTML={{ __html: errorMsg }} />}
+          </Form>
+        </Content>
+      </SubscriptionContainer>
+    </Section>
+  );
+};
+
+export default Subscription;

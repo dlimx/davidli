@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Icon } from '@types';
+import { IIcon } from '../../types/types';
 
-const TripAdvisorIcon: Icon = ({ fill = 'white' }) => (
+const TripAdvisorIcon: IIcon = ({ fill = 'white' }) => (
   <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import mediaqueries from '@styles/media';
+import mediaqueries from '../../styles/media';
 
-const HorizontalRule = styled.hr`
+const HorizontalRule = styled.hr<{ isDark: boolean }>`
   position: relative;
   width: 100%;
   max-width: 680px;

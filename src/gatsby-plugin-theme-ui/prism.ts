@@ -1,4 +1,6 @@
-export default {
+import { IPrism } from '../types/style';
+
+const prism: IPrism = {
   token: `#fff`,
   languageJavascript: `#e8696b`,
   javascript: `#e8696b`,
@@ -20,7 +22,7 @@ export default {
   attrValue: `#a8e2a8`,
   interpolation: `#fff`,
   punctuation: `#5FA8AA`,
-  ['maybe-class-name']: `#fff`,
+  'maybe-class-name': `#fff`,
   property: `#80cbc4`,
   propertyAccess: `#fff`,
   namespace: `#b2ccd6`,
@@ -29,3 +31,5 @@ export default {
   dom: `#5F8DC3`,
   operator: `#5FA8AA`,
 };
+
+export default prism;

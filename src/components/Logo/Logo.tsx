@@ -1,11 +1,27 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import mediaqueries from '@styles/media';
+import mediaqueries from '../../styles/media';
 
-import { Icon } from '@types';
+import { IIcon } from '../../types/types';
 
-const Logo: Icon = ({ fill = 'white' }) => {
+const LogoContainer = styled.div`
+  .Logo__Mobile {
+    display: none;
+  }
+
+  ${mediaqueries.tablet`
+    .Logo__Desktop {
+      display: none;
+    }
+    
+    .Logo__Mobile{
+      display: block;
+    }
+  `}
+`;
+
+const Logo: IIcon = ({ fill = 'white' }) => {
   return (
     <LogoContainer>
       <svg width="192" height="23" viewBox="0 0 192 23" fill="none" xmlns="http://www.w3.org/2000/svg" className="Logo__Desktop">
@@ -89,19 +105,3 @@ const Logo: Icon = ({ fill = 'white' }) => {
 };
 
 export default Logo;
-
-const LogoContainer = styled.div`
-  .Logo__Mobile {
-    display: none;
-  }
-
-  ${mediaqueries.tablet`
-    .Logo__Desktop {
-      display: none;
-    }
-    
-    .Logo__Mobile{
-      display: block;
-    }
-  `}
-`;

@@ -20,22 +20,23 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
+import { IMeta, IOption } from '../../types/types';
 
 interface HelmetProps {
   articlepathName?: string;
-  authorName?: string;
-  authorsBio?: string;
-  authorsSlug?: string;
+  authorName?: string | string[];
+  authorsBio?: string | string[];
+  authorsSlug?: string | string[];
   canonicalUrl?: string;
   dateforSEO?: string;
   description?: string;
   image?: string;
-  isBlogPost: false;
-  pathname: string;
+  isBlogPost?: boolean;
+  pathname?: string;
   published?: string;
   timeToRead?: string;
-  title: string;
-  isSecret: false;
+  title?: string;
+  isSecret?: boolean;
 }
 
 const seoQuery = graphql`
@@ -84,27 +85,27 @@ const SEO: React.FC<HelmetProps> = ({
   children,
   dateforSEO,
   description,
-  image,
-  isBlogPost,
+  image: propImage,
+  isBlogPost = false,
   pathname,
   published,
   timeToRead,
   title,
-  isSecret,
+  isSecret = false,
 }) => {
   const results = useStaticQuery(seoQuery);
   const site = results.allSite.edges[0].node.siteMetadata;
-  const twitter = site.social.find(option => option.name === 'twitter') || {};
-  const github = site.social.find(option => option.name === 'github') || {};
-  const linkedin = site.social.find(option => option.name === 'linkedin') || {};
-  const medium = site.social.find(option => option.name === 'medium') || {};
+  const twitter = site.social.find((option: IOption) => option.name === 'twitter') || {};
+  const github = site.social.find((option: IOption) => option.name === 'github') || {};
+  const linkedin = site.social.find((option: IOption) => option.name === 'linkedin') || {};
+  const medium = site.social.find((option: IOption) => option.name === 'medium') || {};
 
   const pageUrl = site.siteUrl + pathname;
 
   const fullURL = (path: string) => (path ? `${path}` : site.siteUrl);
 
   // If no image is provided lets looks for a default novela static image
-  image = image ? image : `${site.siteUrl}/preview.jpg`;
+  let image = propImage || `${site.siteUrl}/preview.jpg`;
 
   // Checks if the source of the image is hosted on Contentful
   if (`${image}`.includes('ctfassets')) {
@@ -113,7 +114,7 @@ const SEO: React.FC<HelmetProps> = ({
     image = fullURL(image);
   }
 
-  let siteSchema = `{
+  const siteSchema = `{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -185,12 +186,11 @@ const SEO: React.FC<HelmetProps> = ({
 `.replace(/"[^"]+"|(\s)/gm, function(matched, group1) {
     if (!group1) {
       return matched;
-    } else {
-      return '';
     }
+    return '';
   });
 
-  let blogSchema = `{
+  const blogSchema = `{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -331,14 +331,13 @@ const SEO: React.FC<HelmetProps> = ({
 `.replace(/"[^"]+"|(\s)/gm, function(matched, group1) {
     if (!group1) {
       return matched;
-    } else {
-      return '';
     }
+    return '';
   });
 
   const schema = isBlogPost ? blogSchema : siteSchema;
 
-  const metaTags = [
+  const metaTags: IMeta[] = [
     { charset: 'utf-8' },
     {
       'http-equiv': 'X-UA-Compatible',
