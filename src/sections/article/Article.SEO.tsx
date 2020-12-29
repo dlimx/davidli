@@ -45,8 +45,7 @@ const ArticleSEO: React.FC<ArticleSEOProps> = ({ article, authors, location }) =
 
   return (
     <SEO
-      authorName={authorsName
-      }
+      authorName={authorsName}
       authorsBio={authorsBio}
       authorsSlug={authorsSlug}
       canonicalUrl={article.canonical_url}

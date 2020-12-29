@@ -16,7 +16,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "start": "npm run dev",
-    "test": "npm run type-check && npm run lint",
+    "test": "npm run typecheck && npm run lint",
     "typecheck": "tsc"
   },
   "engines": {
