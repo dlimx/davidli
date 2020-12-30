@@ -64,6 +64,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# Yarn lock file (npm only)
+yarn.lock
+
 # dotenv environment variables file
 .env
 

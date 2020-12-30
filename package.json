@@ -14,7 +14,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
-    "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}' --fix",
     "start": "npm run dev",
     "test": "npm run typecheck && npm run lint",
     "typecheck": "tsc"
@@ -31,7 +31,6 @@
     "@raae/gatsby-remark-oembed": "^0.1.1",
     "adm-zip": "^0.4.13",
     "babel-plugin-emotion": "^10.0.14",
-    "contentful-cli": "^0.36.0",
     "gatsby": "^2.15.7",
     "gatsby-image": "^2.2.7",
     "gatsby-paginate": "^1.1.0",

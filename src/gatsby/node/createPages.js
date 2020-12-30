@@ -73,8 +73,6 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
   const dataSources = {
     local: { authors: [], articles: [] },
-    contentful: { authors: [], articles: [] },
-    netlify: { authors: [], articles: [] },
   };
 
   if (rootPath) {
@@ -99,12 +97,12 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   }
 
   // Combining together all the articles from different sources
-  articles = [...dataSources.local.articles, ...dataSources.contentful.articles, ...dataSources.netlify.articles].sort(byDate);
+  articles = [...dataSources.local.articles].sort(byDate);
 
   const articlesThatArentSecret = articles.filter(article => !article.secret);
 
   // Combining together all the authors from different sources
-  authors = getUniqueListBy([...dataSources.local.authors, ...dataSources.contentful.authors, ...dataSources.netlify.authors], 'name');
+  authors = getUniqueListBy([...dataSources.local.authors], 'name');
 
   if (articles.length === 0 || authors.length === 0) {
     throw new Error(`

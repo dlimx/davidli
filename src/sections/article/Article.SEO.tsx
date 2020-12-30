@@ -34,14 +34,7 @@ const ArticleSEO: React.FC<ArticleSEOProps> = ({ article, authors, location }) =
   const authorsSlug = authors.map(author => author.slug);
   const authorsBio = authors.map(author => author.bio);
 
-  let imagelocation;
-
-  // Checks if the source of the image is hosted on Contentful
-  if (`${article.hero.seo.src}`.includes('ctfassets')) {
-    imagelocation = `https:${article.hero.seo.src}`;
-  } else {
-    imagelocation = `${siteUrl + article.hero.seo.src}`;
-  }
+  const imageLocation = `${siteUrl + article.hero.seo.src}`;
 
   return (
     <SEO
@@ -51,7 +44,7 @@ const ArticleSEO: React.FC<ArticleSEOProps> = ({ article, authors, location }) =
       canonicalUrl={article.canonical_url}
       dateforSEO={article.dateForSEO}
       description={article.excerpt}
-      image={imagelocation}
+      image={imageLocation}
       isBlogPost
       articlepathName={siteUrl + location!.pathname}
       published={article.date}
