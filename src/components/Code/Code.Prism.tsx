@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import styled from '@emotion/styled';
@@ -8,10 +7,6 @@ import theme from 'prism-react-renderer/themes/oceanicNext';
 import Icons from '../../icons';
 import mediaqueries from '../../styles/media';
 import { copyToClipboard } from '../../utils';
-
-interface CopyProps {
-  toCopy: string;
-}
 
 const CopyButton = styled.button`
   position: absolute;
@@ -86,6 +81,10 @@ const Container = styled.div`
   `};
 `;
 
+interface CopyProps {
+  toCopy: string;
+}
+
 const Copy: React.FC<CopyProps> = ({ toCopy }) => {
   const [hasCopied, setHasCopied] = useState<boolean>(false);
 
@@ -119,7 +118,7 @@ const RE = /{([\d,-]+)}/;
 
 function calculateLinesToHighlight(meta: string) {
   if (RE.test(meta)) {
-    const lineNumbers = RE.exec(meta)![1]
+    const lineNumbers = RE!.exec!(meta)![1]
       .split(',')
       .map(v => v.split('-').map(y => parseInt(y, 10)));
 
@@ -136,14 +135,13 @@ interface CodePrismProps {
   codeString: string;
   language: Language;
   metastring?: string;
-  live: boolean;
+  live?: boolean;
 }
 
-const CodePrism: React.FC<CodePrismProps> = ({ codeString, language, metastring, ...props }) => {
+const CodePrism: React.FC<CodePrismProps> = ({ codeString, language, metastring, live }) => {
   const shouldHighlightLine = calculateLinesToHighlight(metastring!);
 
-  // eslint-disable-next-line react/destructuring-assignment
-  if (props.live) {
+  if (live) {
     return (
       <Container>
         <LiveProvider code={codeString} noInline theme={theme}>
@@ -162,23 +160,25 @@ const CodePrism: React.FC<CodePrismProps> = ({ codeString, language, metastring,
             <pre className={className} style={{ position: 'relative' }}>
               <Copy toCopy={codeString} />
               {tokens.map((line, index) => {
-                const { tokenClassName } = getLineProps({
+                const { className: lineClassName } = getLineProps({
                   line,
                   key: index,
                   className: shouldHighlightLine(index) ? 'highlight-line' : '',
                 });
 
                 return (
-                  <div key={index} className={tokenClassName}>
+                  // eslint-disable-next-line react/no-array-index-key
+                  <div key={index} className={lineClassName}>
                     <span className="number-line">{index + 1}</span>
                     {line.map((token, key) => {
-                      const { lineClassName, children } = getTokenProps({
+                      const { className: tokenClassName, children } = getTokenProps({
                         token,
                         key,
                       });
 
                       return (
-                        <span key={key} className={lineClassName}>
+                        // eslint-disable-next-line react/no-array-index-key
+                        <span key={key} className={tokenClassName}>
                           {children}
                         </span>
                       );
