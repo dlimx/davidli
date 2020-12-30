@@ -24,7 +24,9 @@ function handleAccessibilityFocus() {
 }
 
 module.exports = ({ prevLocation }) => {
-  handleAccessibilityFocus();
+  setTimeout(() => {
+    handleAccessibilityFocus();
+  }, 1);
 
   if (prevLocation) {
     localStorage.setItem('previousPath', prevLocation.pathname);
