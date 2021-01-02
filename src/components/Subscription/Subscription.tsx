@@ -72,7 +72,7 @@ const Form = styled.form<{ hasError: string }>`
     position: absolute;
     left: 21px;
     top: 10px;
-    color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.accent)};
+    color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.primary)};
 
     ${mediaqueries.tablet`
     left: 34px;
@@ -88,7 +88,7 @@ const Input = styled.input<{ hasError: string }>`
   border: none;
   padding: 13px 21px 13px 35px;
   width: 471px;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
 
   ::placeholder {
     color: ${p => p.theme.colors.track};
@@ -120,16 +120,16 @@ const Button = styled.button<{ hasError: string; subscribed: boolean }>`
   justify-content: center;
   width: 161px;
   height: 38px;
-  border: 1px solid ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.accent)};
-  color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.accent)};
-  background: ${p => (p.subscribed ? p.theme.colors.accent : 'transparent')};
+  border: 1px solid ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.primary)};
+  color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.primary)};
+  background: ${p => (p.subscribed ? p.theme.colors.primary : 'transparent')};
   font-weight: 600;
   border-radius: 35px;
   letter-spacing: 0.42px;
   transition: border-color 0.2s var(--ease-in-out-quad), background 0.2s var(--ease-in-out-quad), color 0.2s var(--ease-in-out-quad);
 
   &:hover {
-    background: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.accent)};
+    background: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.primary)};
     color: ${p => p.theme.colors.background};
   }
 

@@ -8,34 +8,6 @@ import Image, { ImagePlaceholder } from '../../components/Image';
 
 import ArticleAuthors from './Article.Authors';
 
-const Hero = styled.div`
-  ${p => mediaqueries.phablet`
-    &::before {
-      content: "";
-      width: 100%;
-      height: 20px;
-      background: ${p.theme.colors.primary};
-      position: absolute;
-      left: 0;
-      top: 0;
-      transition: ${p.theme.colorModeTransition};
-    }
-
-    &::after {
-      content: "";
-      width: 100%;
-      height: 10px;
-      background: ${p.theme.colors.background};
-      position: absolute;
-      left: 0;
-      top: 10px;
-      border-top-left-radius: 25px;
-      border-top-right-radius: 25px;
-      transition: ${p.theme.colorModeTransition};
-    }
-  `}
-`;
-
 const ArticleMeta = styled.div<{ hasCoAuthors: boolean }>`
   margin-left: ${p => (p.hasCoAuthors ? '10px' : '0')};
 
@@ -158,7 +130,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
   const hasHeroImage = article.hero && Object.keys(article.hero.full).length !== 0 && article.hero.full.constructor === Object;
 
   return (
-    <Hero>
+    <>
       <Header>
         <HeroHeading>{article.title}</HeroHeading>
         <HeroSubtitle hasCoAuthors={hasCoAuthors}>
@@ -169,7 +141,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
         </HeroSubtitle>
       </Header>
       <HeroImage id="ArticleImage__Hero">{hasHeroImage ? <Image src={article.hero.full} /> : <ImagePlaceholder />}</HeroImage>
-    </Hero>
+    </>
   );
 };
 

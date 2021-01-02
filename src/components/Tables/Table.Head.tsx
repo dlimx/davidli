@@ -6,7 +6,7 @@ const Head = styled.thead`
   position: relative;
   line-height: 1.756;
   font-weight: 600;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
   font-family: ${p => p.theme.fonts.serif};
   transition: ${p => p.theme.colorModeTransition};
 `;

@@ -13,7 +13,7 @@ import { IStyledProps } from '../../types/style';
 
 const paginationItemMixin = (p: IStyledProps) => css`
   line-height: 1;
-  color: ${p.theme.colors.primary};
+  color: ${p.theme.colors.title};
   padding: 0;
   width: 6.8rem;
   height: 6.8rem;
@@ -42,7 +42,7 @@ const PageButton = styled(Link)`
   font-weight: 600;
   font-size: 18px;
   text-decoration: none;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
   ${paginationItemMixin}
 
   &:hover,
@@ -56,7 +56,7 @@ const PageNumberBUtton = styled(Link)`
   font-weight: 400;
   font-size: 18px;
   text-decoration: none;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
   ${paginationItemMixin}
 
   &:hover,
@@ -77,11 +77,11 @@ const Spacer = styled.span`
 const MobileReference = styled.span`
   font-weight: 400;
   ${paginationItemMixin}
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
 
   em {
     font-style: normal;
-    color: ${p => p.theme.colors.primary};
+    color: ${p => p.theme.colors.title};
   }
 `;
 

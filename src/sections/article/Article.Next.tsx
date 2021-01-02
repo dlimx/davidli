@@ -98,7 +98,7 @@ const Title = styled(Headings.h3)<{ hasOverflow?: boolean; dark?: boolean }>`
   font-size: 22px;
   line-height: 1.4;
   margin-bottom: ${p => (p.hasOverflow ? '45px' : '10px')};
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
   font-family: ${p => p.theme.fonts.serif};
   transition: color 0.3s ease-in-out;
   ${limitToTwoLines};
@@ -167,7 +167,7 @@ const ArticleLink = styled(Link)<{ narrow: string }>`
 
   &:hover h2,
   &:focus h2 {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.primary};
   }
 
   &[data-a11y='true']:focus::after {
@@ -177,7 +177,7 @@ const ArticleLink = styled(Link)<{ narrow: string }>`
     top: -2%;
     width: 104%;
     height: 104%;
-    border: 3px solid ${p => p.theme.colors.accent};
+    border: 3px solid ${p => p.theme.colors.primary};
     background: rgba(255, 255, 255, 0.01);
   }
 

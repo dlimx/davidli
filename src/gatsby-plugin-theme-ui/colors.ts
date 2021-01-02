@@ -1,14 +1,26 @@
 import prism from './prism';
 import { IColors } from '../types/style';
 
+const materialPrimary = '#e91e63';
+const materialPrimaryDark = '#e91e63';
+const materialPrimaryLight = '#e91e63';
+const materialSecondary = '#2196f3';
+const materialSecondaryDark = '#2196f3';
+const materialSecondaryLight = '#2196f3';
+
 const colors: IColors = {
   prism,
 
-  primary: '#000',
-  secondary: '#73737D',
+  title: '#000',
+  subtitle: '#73737D',
   grey: '#73737D',
   background: '#fafafa',
-  accent: '#6166DC',
+  primary: materialPrimary,
+  primaryDark: materialPrimaryDark,
+  primaryLight: materialPrimaryLight,
+  secondary: materialSecondary,
+  secondaryDark: materialSecondaryDark,
+  secondaryLight: materialSecondaryLight,
   hover: 'rgba(0, 0, 0, 0.07)',
   gradient: 'linear-gradient(180deg, rgba(217, 219, 224, 0) 0%, #D9DBE0 100%)',
   articleText: '#08080B',
@@ -23,9 +35,14 @@ const colors: IColors = {
   modes: {
     dark: {
       grey: '#73737D',
-      primary: '#fff',
-      secondary: '#fff',
-      accent: '#E9DAAC',
+      title: '#fff',
+      subtitle: '#fff',
+      primary: materialSecondary,
+      primaryDark: materialSecondaryDark,
+      primaryLight: materialPrimaryLight,
+      secondary: materialPrimary,
+      secondaryDark: materialPrimaryDark,
+      secondaryLight: materialSecondaryLight,
       background: '#111216',
       hover: 'rgba(255, 255, 255, 0.07)',
       gradient: 'linear-gradient(180deg, #111216 0%, rgba(66, 81, 98, 0.36) 100%)',

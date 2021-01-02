@@ -73,8 +73,8 @@ const MoonOrSun = styled.div<{ isDark: boolean }>`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: ${p => (p.isDark ? '4px' : '2px')} solid ${p => p.theme.colors.primary};
-  background: ${p => p.theme.colors.primary};
+  border: ${p => (p.isDark ? '4px' : '2px')} solid ${p => p.theme.colors.title};
+  background: ${p => p.theme.colors.title};
   transform: scale(${p => (p.isDark ? 0.55 : 1)});
   transition: all 0.45s ease;
   overflow: ${p => (p.isDark ? 'visible' : 'hidden')};
@@ -86,7 +86,7 @@ const MoonOrSun = styled.div<{ isDark: boolean }>`
     top: -9px;
     height: 24px;
     width: 24px;
-    border: 2px solid ${p => p.theme.colors.primary};
+    border: 2px solid ${p => p.theme.colors.title};
     border-radius: 50%;
     transform: translate(${p => (p.isDark ? '14px, -14px' : '0, 0')});
     opacity: ${p => (p.isDark ? 0 : 1)};
@@ -102,9 +102,9 @@ const MoonOrSun = styled.div<{ isDark: boolean }>`
     position: absolute;
     top: 50%;
     left: 50%;
-    box-shadow: 0 -23px 0 ${p => p.theme.colors.primary}, 0 23px 0 ${p => p.theme.colors.primary}, 23px 0 0 ${p => p.theme.colors.primary},
-      -23px 0 0 ${p => p.theme.colors.primary}, 15px 15px 0 ${p => p.theme.colors.primary}, -15px 15px 0 ${p => p.theme.colors.primary},
-      15px -15px 0 ${p => p.theme.colors.primary}, -15px -15px 0 ${p => p.theme.colors.primary};
+    box-shadow: 0 -23px 0 ${p => p.theme.colors.title}, 0 23px 0 ${p => p.theme.colors.title}, 23px 0 0 ${p => p.theme.colors.title},
+      -23px 0 0 ${p => p.theme.colors.title}, 15px 15px 0 ${p => p.theme.colors.title}, -15px 15px 0 ${p => p.theme.colors.title},
+      15px -15px 0 ${p => p.theme.colors.title}, -15px -15px 0 ${p => p.theme.colors.title};
     transform: scale(${p => (p.isDark ? 1 : 0)});
     transition: all 0.35s ease;
 

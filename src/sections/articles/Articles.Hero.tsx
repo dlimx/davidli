@@ -72,10 +72,10 @@ const HeroHeading = styled.h1`
   font-weight: 600;
   font-size: 52px;
   line-height: 1.15;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
 
   a {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.primary};
   }
 
   ${mediaqueries.desktop`
@@ -113,7 +113,7 @@ const GridButton = styled.button<{ active: boolean }>`
     top: -10%;
     width: 120%;
     height: 120%;
-    border: 2px solid ${p => p.theme.colors.accent};
+    border: 2px solid ${p => p.theme.colors.primary};
     background: rgba(255, 255, 255, 0.01);
     border-radius: 50%;
   }
@@ -123,7 +123,7 @@ const GridButton = styled.button<{ active: boolean }>`
     transition: opacity 0.2s;
 
     path {
-      fill: ${p => p.theme.colors.primary};
+      fill: ${p => p.theme.colors.title};
     }
   }
 `;

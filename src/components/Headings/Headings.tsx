@@ -11,7 +11,7 @@ import { IStyledProps } from '../../types/style';
 
 const commonStyles = (p: IStyledProps) => css`
   font-weight: bold;
-  color: ${p.theme.colors.primary};
+  color: ${p.theme.colors.title};
   font-family: ${p.theme.fonts.serif};
 `;
 

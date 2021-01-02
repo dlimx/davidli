@@ -31,11 +31,16 @@ export interface IPrism {
 }
 
 export interface IColorsMode {
-  primary: string;
-  secondary: string;
+  title: string;
+  subtitle: string;
   grey: string;
   background: string;
-  accent: string;
+  primary: string;
+  primaryLight: string;
+  primaryDark: string;
+  secondary: string;
+  secondaryLight: string;
+  secondaryDark: string;
   hover: string;
   gradient: string;
   articleText: string;

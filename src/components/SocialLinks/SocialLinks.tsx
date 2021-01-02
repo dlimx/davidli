@@ -45,7 +45,7 @@ const SocialIconContainer = styled.a`
     top: -20%;
     width: 200%;
     height: 160%;
-    border: 2px solid ${p => p.theme.colors.accent};
+    border: 2px solid ${p => p.theme.colors.primary};
     background: rgba(255, 255, 255, 0.01);
     border-radius: 5px;
   }

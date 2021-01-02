@@ -250,7 +250,7 @@ const ArticleLink = styled(Link)`
 
   &:hover h2,
   &:focus h2 {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.primary};
   }
 
   &[data-a11y='true']:focus::after {
@@ -260,7 +260,7 @@ const ArticleLink = styled(Link)`
     top: -2%;
     width: 103%;
     height: 104%;
-    border: 3px solid ${p => p.theme.colors.accent};
+    border: 3px solid ${p => p.theme.colors.primary};
     background: rgba(255, 255, 255, 0.01);
     border-radius: 5px;
   }

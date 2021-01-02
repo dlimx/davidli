@@ -58,7 +58,7 @@ const FooterNext = styled.h3`
   opacity: 0.25;
   margin-bottom: 100px;
   font-weight: 400;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.title};
 
   ${mediaqueries.tablet`
     margin-bottom: 60px;

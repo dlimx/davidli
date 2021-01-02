@@ -172,11 +172,6 @@ module.exports = {
         remarkPlugins: [require(`remark-slug`)], // eslint-disable-line global-require
       },
     },
-    {
-      resolve: `gatsby-plugin-emotion`,
-      options: {
-        displayName: process.env.NODE_ENV === `development`,
-      },
-    },
+    `gatsby-plugin-emotion`,
   ],
 };

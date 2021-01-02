@@ -40,7 +40,7 @@ const BioAvatar = styled.div<{ to: string }>`
     top: -5px;
     width: 50px;
     height: 50px;
-    border: 2px solid ${p => p.theme.colors.accent};
+    border: 2px solid ${p => p.theme.colors.primary};
   }
 `;
 

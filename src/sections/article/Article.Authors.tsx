@@ -40,7 +40,7 @@ const AuthorLink = styled(Link)`
   }
 
   &:hover strong {
-    color: ${p => p.theme.colors.primary};
+    color: ${p => p.theme.colors.title};
   }
 `;
 
@@ -137,7 +137,7 @@ const NameContainer = styled.strong`
 const AuthorNameOpen = styled.strong`
   position: relative;
   cursor: pointer;
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.subtitle};
   font-weight: 600;
 `;
 
