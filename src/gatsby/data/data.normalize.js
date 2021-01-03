@@ -49,7 +49,7 @@ function normalizeAvatar(author) {
   return avatar;
 }
 
-module.exports.local = {
+module.exports = {
   articles: ({ node: article }) => {
     return {
       ...article,

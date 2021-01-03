@@ -1,4 +1,4 @@
-/* eslint-disable no-console, import/no-extraneous-dependencies, prefer-const, no-shadow */
+/* eslint-disable no-console, import/no-extraneous-dependencies */
 
 require('dotenv').config();
 
@@ -68,11 +68,9 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
   console.log(sources);
 
-  let authors;
-  let articles;
-
   const dataSources = {
-    local: { authors: [], articles: [] },
+    articles: [],
+    authors: [],
   };
 
   if (rootPath) {
@@ -85,28 +83,27 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   if (authorsPage) log('Config authorsPath', authorsPath);
 
   try {
-    log('Querying Authors & Articles source:', 'Local');
-    const localAuthors = await graphql(query.local.authors);
-    const localArticles = await graphql(query.local.articles);
+    log('Querying Articles & Authors');
+    const dataArticles = await graphql(query.articles);
+    const dataAuthors = await graphql(query.authors);
 
-    dataSources.local.authors = localAuthors.data.authors.edges.map(normalize.local.authors);
-
-    dataSources.local.articles = localArticles.data.articles.edges.map(normalize.local.articles);
+    dataSources.articles = dataArticles.data.articles.edges.map(normalize.articles);
+    dataSources.authors = dataAuthors.data.authors.edges.map(normalize.authors);
   } catch (error) {
     console.error(error);
   }
 
   // Combining together all the articles from different sources
-  articles = [...dataSources.local.articles].sort(byDate);
+  const articles = [...dataSources.articles].sort(byDate);
 
   const articlesThatArentSecret = articles.filter(article => !article.secret);
 
   // Combining together all the authors from different sources
-  authors = getUniqueListBy([...dataSources.local.authors], 'name');
+  const authors = getUniqueListBy([...dataSources.authors], 'name');
 
-  if (articles.length === 0 || authors.length === 0) {
+  if (articles.length === 0) {
     throw new Error(`
-    You must have at least one Author and Post. As reference you can view the
+    You must have at least one Post. As reference you can view the
     example repository. Look at the content folder in the example repo.
     https://github.com/narative/gatsby-theme-novela-example
   `);
@@ -161,7 +158,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     }
 
     /**
-     * We need a way to find the next artiles to suggest at the bottom of the articles page.
+     * We need a way to find the next articles to suggest at the bottom of the articles page.
      * To accomplish this there is some special logic surrounding what to show next.
      */
     let next = articlesThatArentSecret.slice(index + 1, index + 3);
@@ -200,7 +197,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       const articlesTheAuthorHasWritten = articlesThatArentSecret.filter(article =>
         article.author.toLowerCase().includes(author.name.toLowerCase()),
       );
-      const path = slugify(author.slug, authorsPath);
+      const authorPath = slugify(author.slug, authorsPath);
 
       createPaginatedPages({
         edges: articlesTheAuthorHasWritten,
@@ -211,7 +208,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
         buildPath: buildPaginatedPath,
         context: {
           author,
-          originalPath: path,
+          originalPath: authorPath,
           skip: pageLength,
           limit: pageLength,
         },

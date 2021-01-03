@@ -8,6 +8,7 @@ import Icons from '../../icons';
 import mediaqueries from '../../styles/media';
 import { IAuthor } from '../../types/types';
 import Image from '../../components/Image';
+import { AUTHOR } from '../../constants/constants';
 
 const AuthorAvatar = styled.div`
   height: 25px;
@@ -231,6 +232,10 @@ function generateAuthorNames(authors: IAuthor[]) {
     .join(', ');
 }
 
+function generateAuthorLink(author: IAuthor) {
+  return author.name === AUTHOR ? '/about' : author.slug;
+}
+
 interface AuthorsProps {
   authors: IAuthor[];
 }
@@ -265,7 +270,7 @@ const CoAuthors: React.FC<AuthorsProps> = ({ authors }) => {
             </IconOpenContainer>
             {authors.map(author => (
               <CoAuthorsListItemOpen key={author.name}>
-                <AuthorLink as={author.authorsPage ? Link : 'div'} to={author.slug}>
+                <AuthorLink as={author.authorsPage ? Link : 'div'} to={generateAuthorLink(author)}>
                   <CoAuthorAvatarOpen>
                     <RoundedImage src={author.avatar.small} />
                   </CoAuthorAvatarOpen>
@@ -292,7 +297,7 @@ const ArticleAuthors: React.FC<AuthorsProps> = ({ authors }) => {
     return <CoAuthors authors={authors} />;
   }
   return (
-    <AuthorLink as={authors[0].authorsPage ? Link : 'div'} to={authors[0].slug}>
+    <AuthorLink as={authors[0].authorsPage ? Link : 'div'} to={generateAuthorLink(authors[0])}>
       <AuthorAvatar>
         <RoundedImage src={authors[0].avatar.small} />
       </AuthorAvatar>

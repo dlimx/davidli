@@ -8,12 +8,16 @@ module.exports = {
     name: `David Li`,
     description: `My online site and presence`,
     hero: {
-      heading: `Welcome to my home page.`,
-      maxWidth: 652,
+      heading: `Let's build a brighter tomorrow`,
+      maxWidth: 800,
     },
     author: `@dlimx`,
     siteUrl: 'https://davidli.io',
     social: [
+      {
+        name: `linkedin`,
+        url: `https://www.linkedin.com/in/dlimx/`,
+      },
       {
         name: `github`,
         url: `https://github.com/dlimx`,
@@ -21,10 +25,6 @@ module.exports = {
       {
         name: `instagram`,
         url: `https://instagram.com/dli.mx`,
-      },
-      {
-        name: `linkedin`,
-        url: `https://www.linkedin.com/in/dlimx/`,
       },
     ],
   },

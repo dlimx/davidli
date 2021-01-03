@@ -134,14 +134,6 @@ const ArticlesHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
   const results = useStaticQuery(authorQuery);
   const { hero } = results.site.edges[0].node.siteMetadata;
   const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
-  const featuredAuthor = authors.find((author: IAuthor) => author.featured);
-
-  if (!featuredAuthor) {
-    throw new Error(`
-      No featured Author found.
-      Please ensure you have at least featured Author.
-  `);
-  }
 
   return (
     <Section relative id="Articles__Hero">
@@ -149,7 +141,7 @@ const ArticlesHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
         <HeroHeading dangerouslySetInnerHTML={{ __html: hero.heading }} />
       </HeadingContainer>
       <SubheadingContainer>
-        <Bio author={featuredAuthor} />
+        <Bio author={authors.find((author: IAuthor) => author.featured)!} />
         <GridControlsContainer>
           <GridButton
             onClick={() => setGridLayout('tiles')}

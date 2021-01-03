@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Template } from '../types/types';
 import Section from '../components/Section';
 import SEO from '../components/SEO';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import Paginator from '../components/Navigation/Navigation.Paginator';
 
 import ArticlesHero from '../sections/articles/Articles.Hero';

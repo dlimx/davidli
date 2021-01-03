@@ -1,52 +1,9 @@
-- name: Dennis Brotzky
+- name: David Li
   bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
+    Software Engineer @aws, dreamer, adventurer, and always seeking the next challenge. Available for friendship and (especailly) drinks. All writings are purely for fun.
   avatar: ./avatars/dennis-brotzky.jpg
   featured: true
   social:
-    - url: https://unsplash.com
-    - url: https://stackoverflow.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Thiago Costa
-  bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  avatar: ./avatars/thiago-costa.jpg
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Brad Tiller
-  bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  avatar: ./avatars/brad-tiller.jpg
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
-
-- name: Mack Mansouri
-  bio: |
-    Written by You. This is where your author bio lives. Share your work, your
-    joys and of course, your Twitter handle.
-  avatar: ./avatars/mack-mansouri.jpg
-  social:
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: https://github.com
-    - url: mailto:myem@il.com
+    - url: https://www.linkedin.com/in/dlimx
+    - url: https://github.com/dlimx
+    - url: https://instagram.com/dli.mx

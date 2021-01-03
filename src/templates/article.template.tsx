@@ -6,7 +6,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import mediaqueries from '../styles/media';
 import { debounce } from '../utils';
 import { Template } from '../types/types';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import MDXRenderer from '../components/MDX';
 import Progress from '../components/Progress';
 import Section from '../components/Section';

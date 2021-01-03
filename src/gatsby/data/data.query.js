@@ -12,7 +12,7 @@ const GatsbyFluid_withWebp = `
   sizes
 `;
 
-module.exports.local = {
+module.exports = {
   articles: `{
     articles: allArticle(
       sort: { fields: [date, title], order: DESC }
