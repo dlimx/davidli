@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{"2l/u":function(n,u,t){"use strict";t.r(u);t("q1tI");var e=t("4XLq"),o=t("qKvR");u.default=function(){return Object(o.jsx)(e.a,null,Object(o.jsx)("h1",null,"You are here!"),Object(o.jsx)("h2",null,"But nothing found for you #404"))}}}]);
+//# sourceMappingURL=component---src-pages-about-tsx-a7c13bc8b8b666b75002.js.map
