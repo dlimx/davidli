@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{QQhk:function(n,e,o){"use strict";o.r(e);var t=o("Wbzz");e.default=function(){return"undefined"!=typeof window&&Object(t.c)("/about",{replace:!0}),null}}}]);
+//# sourceMappingURL=component---src-pages-authors-david-li-tsx-b0fa4a14683e36a57038.js.map
