@@ -199,6 +199,12 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       );
       const authorPath = slugify(author.slug, authorsPath);
 
+      console.log(author.name);
+
+      if (author.name === 'David Li') {
+        return;
+      }
+
       createPaginatedPages({
         edges: articlesTheAuthorHasWritten,
         pathPrefix: author.slug,

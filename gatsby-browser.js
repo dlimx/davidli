@@ -1,5 +1,6 @@
 // Load static fonts
-require('typeface-merriweather');
+require('@fontsource/rubik');
+require('@fontsource/open-sans');
 
 exports.onInitialClientRender = require('./src/gatsby/browser/onInitialClientRender');
 exports.onRouteUpdate = require('./src/gatsby/browser/onRouteUpdate');

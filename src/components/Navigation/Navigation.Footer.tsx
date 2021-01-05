@@ -82,7 +82,7 @@ const Footer: React.FC<{}> = () => {
 
   const copyrightDate = (() => {
     const { edges } = results.allMdx;
-    const years = [0, edges.length - 1].map(edge => new Date(edges[edge].node.frontmatter.date).getFullYear());
+    const years = [0, 1].map(edge => new Date(edges[edge].node.frontmatter.date).getFullYear());
     return years[0] === years[1] ? `${years[0]}` : `${years[0]}–${years[1]}`;
   })();
 

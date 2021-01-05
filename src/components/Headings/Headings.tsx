@@ -10,7 +10,7 @@ import { IStyledProps } from '../../types/style';
  */
 
 const commonStyles = (p: IStyledProps) => css`
-  font-weight: bold;
+  font-weight: 500;
   color: ${p.theme.colors.title};
   font-family: ${p.theme.fonts.serif};
 `;
