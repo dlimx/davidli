@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{"i6+/":function(n,u,t){"use strict";t.r(u);t("q1tI");var e=t("4XLq"),o=t("ijqZ"),c=t("qKvR");u.default=function(){return Object(c.jsx)(e.a,null,Object(c.jsx)(o.a,null,Object(c.jsx)("h1",null,"You are here!"),Object(c.jsx)("h2",null,"But nothing found for you #404")))}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-57ad93051dd5f8e8a115.js.map
