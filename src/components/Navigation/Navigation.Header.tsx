@@ -72,6 +72,18 @@ const LogoLink = styled(Link)<{ back: string }>`
   }
 `;
 
+const AboutLink = styled(Link)`
+  font-size: 18px;
+  font-family: ${p => p.theme.fonts.serif};
+  transition: color 0.3s ease-in-out;
+  color: ${p => p.theme.colors.title};
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.primary};
+  }
+`;
+
 const NavControls = styled.div`
   position: relative;
   display: flex;
@@ -268,7 +280,7 @@ const NavigationHeader: React.FC<{}> = () => {
             </button>
           ) : (
             <>
-              <Link to="/about">about</Link>
+              <AboutLink to="/about">about</AboutLink>
               <DarkModeToggle />
             </>
           )}

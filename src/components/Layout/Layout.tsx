@@ -6,7 +6,7 @@ import { useColorMode } from 'theme-ui';
 import NavigationFooter from '../Navigation/Navigation.Footer';
 import NavigationHeader from '../Navigation/Navigation.Header';
 import { globalStyles } from '../../styles';
-import ArticlesContextProvider from '../../sections/articles/Articles.List.Context';
+import ArticlesContextProvider from '../../sections/main/Main.ArticlesList.Context';
 
 const Container = styled.div`
   position: relative;

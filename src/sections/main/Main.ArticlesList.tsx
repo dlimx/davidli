@@ -8,7 +8,7 @@ import { IArticle } from '../../types/types';
 import Headings from '../../components/Headings';
 import Image, { ImagePlaceholder } from '../../components/Image';
 
-import { GridLayoutContext } from './Articles.List.Context';
+import { GridLayoutContext } from './Main.ArticlesList.Context';
 import { IStyledProps } from '../../types/style';
 
 const wide = '1fr';
@@ -332,7 +332,7 @@ const ListItem: React.FC<ArticlesListItemProps> = ({ article, narrow }) => {
   );
 };
 
-const ArticlesList: React.FC<ArticlesListProps> = ({ articles, alwaysShowAllDetails }) => {
+const MainArticlesList: React.FC<ArticlesListProps> = ({ articles, alwaysShowAllDetails }) => {
   if (!articles) return null;
 
   const hasOnlyOneArticle = articles.length === 1;
@@ -370,4 +370,4 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, alwaysShowAllDeta
   );
 };
 
-export default ArticlesList;
+export default MainArticlesList;

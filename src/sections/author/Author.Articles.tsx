@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import mediaqueries from '../../styles/media';
 import { IArticle } from '../../types/types';
 
-import ArticlesList from '../articles/Articles.List';
+import MainArticlesList from '../main/Main.ArticlesList';
 
 interface AuthorArticlesProps {
   articles: IArticle[];
@@ -30,7 +30,7 @@ const AuthorArticlesContainer = styled.div`
 const AuthorArticles: React.FC<AuthorArticlesProps> = ({ articles }) => {
   return (
     <AuthorArticlesContainer>
-      <ArticlesList articles={articles} alwaysShowAllDetails />
+      <MainArticlesList articles={articles} alwaysShowAllDetails />
     </AuthorArticlesContainer>
   );
 };

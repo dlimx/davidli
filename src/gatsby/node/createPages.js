@@ -9,7 +9,7 @@ const createPaginatedPages = require('gatsby-paginate');
 
 const templatesDirectory = path.resolve(__dirname, '../../templates');
 const templates = {
-  articles: path.resolve(templatesDirectory, 'articles.template.tsx'),
+  articles: path.resolve(templatesDirectory, 'main.template.tsx'),
   article: path.resolve(templatesDirectory, 'article.template.tsx'),
   author: path.resolve(templatesDirectory, 'author.template.tsx'),
 };

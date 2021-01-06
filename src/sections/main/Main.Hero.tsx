@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Icons from '../../icons';
@@ -8,24 +7,7 @@ import { IAuthor } from '../../types/types';
 import Bio from '../../components/Bio';
 import Section from '../../components/Section';
 
-import { GridLayoutContext } from './Articles.List.Context';
-
-const authorQuery = graphql`
-  {
-    site: allSite {
-      edges {
-        node {
-          siteMetadata {
-            hero {
-              heading
-              maxWidth
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import { GridLayoutContext } from './Main.ArticlesList.Context';
 
 const SubheadingContainer = styled.div`
   display: flex;
@@ -128,17 +110,17 @@ const GridButton = styled.button<{ active: boolean }>`
   }
 `;
 
-const ArticlesHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
+const MainHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
   const { gridLayout = 'tiles', hasSetGridLayout, setGridLayout } = useContext(GridLayoutContext);
 
-  const results = useStaticQuery(authorQuery);
-  const { hero } = results.site.edges[0].node.siteMetadata;
   const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
 
   return (
     <Section relative id="Articles__Hero">
-      <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
-        <HeroHeading dangerouslySetInnerHTML={{ __html: hero.heading }} />
+      <HeadingContainer>
+        <HeroHeading>
+          Let&apos;s build a brighter tomorrow
+        </HeroHeading>
       </HeadingContainer>
       <SubheadingContainer>
         <Bio author={authors.find((author: IAuthor) => author.featured)!} />
@@ -167,4 +149,4 @@ const ArticlesHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
   );
 };
 
-export default ArticlesHero;
+export default MainHero;

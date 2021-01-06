@@ -7,8 +7,8 @@ import SEO from '../components/SEO';
 import Layout from '../components/Layout/Layout';
 import Paginator from '../components/Navigation/Navigation.Paginator';
 
-import ArticlesHero from '../sections/articles/Articles.Hero';
-import ArticlesList from '../sections/articles/Articles.List';
+import MainHero from '../sections/main/Main.Hero';
+import MainArticlesList from '../sections/main/Main.ArticlesList';
 
 const ArticlesPaginator = styled.div<{ show: boolean }>`
   ${p => p.show && `margin-top: 95px;`}
@@ -21,9 +21,9 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
   return (
     <Layout>
       <SEO pathname={location!.pathname} />
-      <ArticlesHero authors={authors!} />
+      <MainHero authors={authors!} />
       <Section narrow>
-        <ArticlesList articles={articles} />
+        <MainArticlesList articles={articles} />
         <ArticlesPaginator show={pageContext.pageCount > 1}>
           <Paginator {...pageContext} />
         </ArticlesPaginator>

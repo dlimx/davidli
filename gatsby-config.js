@@ -6,11 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `David Li`,
     name: `David Li`,
-    description: `My online site and presence`,
-    hero: {
-      heading: `Let's build a brighter tomorrow`,
-      maxWidth: 800,
-    },
+    description: `Let's build a brighter tomorrow`,
     author: `@dlimx`,
     siteUrl: 'https://davidli.io',
     social: [
