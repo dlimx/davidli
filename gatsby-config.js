@@ -25,6 +25,18 @@ module.exports = {
     ],
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `David Li`,
+        short_name: `David Li`,
+        start_url: `/`,
+        background_color: `#000000`,
+        theme_color: `#ff6090`,
+        display: `standalone`,
+        icon: `src/images/icon.svg`,
+      },
+    },
     `gatsby-plugin-typescript`,
     `gatsby-image`,
     `gatsby-plugin-react-helmet`,
@@ -169,5 +181,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-emotion`,
+    `gatsby-plugin-offline`,
   ],
 };

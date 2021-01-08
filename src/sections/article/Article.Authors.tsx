@@ -245,7 +245,7 @@ const CoAuthors: React.FC<AuthorsProps> = ({ authors }) => {
   const [colorMode] = useColorMode();
   const names = generateAuthorNames(authors);
 
-  const fill = colorMode === 'dark' ? '#fff' : '#000';
+  const fill = colorMode === 'dark' ? '#ffffff' : '#000000';
   const listWidth = { width: `${10 + authors.length * 15}px` };
 
   return (

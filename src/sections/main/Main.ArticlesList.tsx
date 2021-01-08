@@ -174,6 +174,7 @@ const Title = styled(Headings.h2)<{ hasOverflow?: boolean; gridLayout: string; d
   margin-bottom: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? '35px' : '10px')};
   transition: color 0.3s ease-in-out;
   ${limitToTwoLines};
+  color: ${p => p.theme.colors.primary};
 
   ${mediaqueries.desktop`
     margin-bottom: 15px;
@@ -250,7 +251,7 @@ const ArticleLink = styled(Link)`
 
   &:hover h2,
   &:focus h2 {
-    color: ${p => p.theme.colors.primary};
+    color: ${p => p.theme.colors.secondary};
   }
 
   &[data-a11y='true']:focus::after {

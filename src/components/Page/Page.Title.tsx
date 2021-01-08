@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import Headings from "../Headings/Headings";
-import mediaqueries from "../../styles/media";
+import styled from '@emotion/styled';
+import Headings from '../Headings/Headings';
+import mediaqueries from '../../styles/media';
 
 export const PageTitle = styled(Headings.h1)`
   font-size: 48px;

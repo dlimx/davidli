@@ -55,6 +55,7 @@ const HeroHeading = styled.h1`
   font-size: 52px;
   line-height: 1.15;
   color: ${p => p.theme.colors.title};
+  width: 100%;
 
   a {
     color: ${p => p.theme.colors.primary};
@@ -67,6 +68,10 @@ const HeroHeading = styled.h1`
   ${mediaqueries.phablet`
     font-size: 32px;
   `}
+`;
+
+const HeroHeadingHighlight = styled.span`
+  background-color: ${p => p.theme.colors.secondaryTransparent};
 `;
 
 const GridButton = styled.button<{ active: boolean }>`
@@ -119,7 +124,7 @@ const MainHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
     <Section relative id="Articles__Hero">
       <HeadingContainer>
         <HeroHeading>
-          Let&apos;s build a brighter tomorrow
+          Let&apos;s build a <HeroHeadingHighlight>brighter tomorrow</HeroHeadingHighlight>
         </HeroHeading>
       </HeadingContainer>
       <SubheadingContainer>

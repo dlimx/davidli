@@ -1,7 +1,7 @@
 import { IPrism } from '../types/style';
 
 const prism: IPrism = {
-  token: `#fff`,
+  token: `#ffffff`,
   languageJavascript: `#e8696b`,
   javascript: `#e8696b`,
   background: `#292c34`,
@@ -10,7 +10,7 @@ const prism: IPrism = {
   var: `#b3bac5`,
   number: `#e4854d`,
   constant: `#b3bac5`,
-  plain: `#fff`,
+  plain: `#ffffff`,
   doctype: `#e8696b`,
   tag: `#e8696b`,
   keyword: `#d49fd4`,
@@ -20,11 +20,11 @@ const prism: IPrism = {
   className: `#ffcf74`,
   attrName: `#bf87ba`,
   attrValue: `#a8e2a8`,
-  interpolation: `#fff`,
+  interpolation: `#ffffff`,
   punctuation: `#5FA8AA`,
-  'maybe-class-name': `#fff`,
+  'maybe-class-name': `#ffffff`,
   property: `#80cbc4`,
-  propertyAccess: `#fff`,
+  propertyAccess: `#ffffff`,
   namespace: `#b2ccd6`,
   highlight: `rgba(255,255,255,0.07)`,
   highlightBorder: `#e1bde2`,

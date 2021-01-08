@@ -14,8 +14,8 @@ const NavControls = styled.div`
 const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
   position: absolute;
   padding: 4px 13px;
-  background: ${p => (p.isDark ? '#000' : 'rgba(0,0,0,0.1)')};
-  color: ${p => (p.isDark ? '#fff' : '#000')};
+  background: ${p => (p.isDark ? '#000000' : 'rgba(0,0,0,0.1)')};
+  color: ${p => (p.isDark ? '#ffffff' : '#000000')};
   border-radius: 5px;
   font-size: 14px;
   top: -35px;
@@ -34,7 +34,7 @@ const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid ${p => (p.isDark ? '#000' : 'rgba(0,0,0,0.1)')};
+    border-top: 6px solid ${p => (p.isDark ? '#000000' : 'rgba(0,0,0,0.1)')};
   }
 `;
 

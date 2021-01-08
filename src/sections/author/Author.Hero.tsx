@@ -70,7 +70,7 @@ const Subheading = styled.p`
   font-family: ${p => p.theme.fonts.sansSerif};
   line-height: 1.4;
   text-align: center;
-
+  
   ${mediaqueries.phablet`
     font-size: 14px;
   `}

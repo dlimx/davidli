@@ -73,10 +73,14 @@ const LogoLink = styled(Link)<{ back: string }>`
 `;
 
 const AboutLink = styled(Link)`
-  font-size: 18px;
+  font-size: 20px;
   font-family: ${p => p.theme.fonts.serif};
   transition: color 0.3s ease-in-out;
   color: ${p => p.theme.colors.title};
+
+  ${mediaqueries.phablet`
+    font-size: 16px;
+  `}
 
   &:hover,
   &:focus {
@@ -235,7 +239,7 @@ const NavigationHeader: React.FC<{}> = () => {
   const basePath = '/';
 
   const [colorMode] = useColorMode();
-  const fill = colorMode === 'dark' ? '#fff' : '#000';
+  const fill = colorMode === 'dark' ? '#ffffff' : '#000000';
 
   useEffect(() => {
     const { width } = getWindowDimensions();

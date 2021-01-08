@@ -342,7 +342,7 @@ const SEO: React.FC<HelmetProps> = ({
     },
     {
       name: 'theme-color',
-      content: '#fff',
+      content: '#ffffff',
     },
     { itemprop: 'name', content: title || site.title },
     { itemprop: 'description', content: description || site.description },
