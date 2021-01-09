@@ -1,17 +1,15 @@
 import { PageProps } from 'gatsby';
 import * as React from 'react';
-import Helmet from 'react-helmet';
 import Layout from '../components/Layout/Layout';
 import Section from '../components/Section';
 import { PageTitleContainer } from '../components/Page/Page.TitleContainer';
 import { PageTitle } from '../components/Page/Page.Title';
 import { PageText } from '../components/Page/Page.Text';
+import SEO from '../components/SEO';
 
 const Error404Page: React.FC<PageProps> = () => (
   <>
-    <Helmet>
-      <title>404 - Oops!</title>
-    </Helmet>
+    <SEO title="404 - Oops!" />
     <Layout>
       <Section>
         <PageTitleContainer>

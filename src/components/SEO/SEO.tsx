@@ -111,8 +111,8 @@ const SEO: React.FC<HelmetProps> = ({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
-        "@id": "${site.siteUrl}/#organization",
+        "@type": "Person",
+        "@id": "${site.siteUrl}/#person",
         "name": "${site.title}",
         "url": "${site.siteUrl}",
         "sameAs": [
@@ -381,7 +381,13 @@ const SEO: React.FC<HelmetProps> = ({
   }
 
   return (
-    <Helmet title={title || site.title} htmlAttributes={{ lang: 'en' }} script={themeUIDarkModeWorkaroundScript} meta={metaTags}>
+    <Helmet
+      htmlAttributes={{ lang: 'en' }}
+      script={themeUIDarkModeWorkaroundScript}
+      meta={metaTags}
+      defer={false}
+    >
+      <title>{title || site.title}</title>
       <script type="application/ld+json">{schema}</script>
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
       {children}

@@ -10,12 +10,11 @@ import Headings from '../components/Headings/Headings';
 import { PageTitle } from '../components/Page/Page.Title';
 import { PageTitleContainer } from '../components/Page/Page.TitleContainer';
 import { PageText } from '../components/Page/Page.Text';
+import SEO from '../components/SEO';
 
 const AboutPage: React.FC<PageProps> = () => (
   <>
-    <Helmet>
-      <title>About Me</title>
-    </Helmet>
+    <SEO title="About Me" />
     <Layout>
       <Section>
         <PageTitleContainer>
