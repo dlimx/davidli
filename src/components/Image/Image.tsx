@@ -36,8 +36,6 @@ const Image: React.FC<any> = ({ src, alt, ...props }) => {
     ...props,
   };
 
-  console.log(src);
-
   // TODO : Find where you have src null returns
   if (!src) return null;
 
