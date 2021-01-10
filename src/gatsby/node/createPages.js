@@ -2,7 +2,15 @@
 
 require('dotenv').config();
 
-const log = (message, section) => console.log(`\n\u001B[36m${message} \u001B[4m${section}\u001B[0m\u001B[0m\n`);
+const log = (message, section) => {
+  let str = `\n\u001B[36m${message}`;
+
+  if (section) {
+    str += `\u001B[4m${section}\u001B[0m\u001B[0m\n`;
+  }
+
+  console.log(str);
+};
 
 const path = require('path');
 const createPaginatedPages = require('gatsby-paginate');
