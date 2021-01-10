@@ -13,6 +13,7 @@ import Image from '../components/Image';
 import { PageHeading } from '../components/Page/Page.Heading';
 import { PageLink } from '../components/Page/Page.Link';
 import mediaqueries from '../styles/media';
+import { BioIntro } from '../components/Bio/Bio.Intro';
 
 const Row = styled.div`
   display: flex;
@@ -73,15 +74,7 @@ const AboutPage: React.FC<PageProps> = () => {
           </PageTitleContainer>
           <Row>
             <PageDetail>
-              <PageText>
-                Hey there{' '}
-                <span aria-label="Wave Hello" role="img">
-                  👋
-                </span>{' '}
-                , my name is <strong>David (Min Xiao) Li</strong>. I&apos;m a software engineer currently based out of{' '}
-                <strong>Vancouver, Canada</strong>. I currently work at{' '}
-                <PageLink href="https://aws.amazon.com/">Amazon Web Services</PageLink>.
-              </PageText>
+              <BioIntro />
               <PageText>
                 On a day-to-day basis (pre-pandemic), I am often found working at a local bar or café. Some of my hobbies include writing,
                 coding, and beach volleyball. I love food and drink{' '}

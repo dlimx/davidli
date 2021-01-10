@@ -8,6 +8,8 @@ import Bio from '../../components/Bio';
 import Section from '../../components/Section';
 
 import { GridLayoutContext } from './Main.ArticlesList.Context';
+import { BioIntro } from '../../components/Bio/Bio.Intro';
+import { PageText } from '../../components/Page/Page.Text';
 
 const SubheadingContainer = styled.div`
   display: flex;
@@ -21,10 +23,6 @@ const SubheadingContainer = styled.div`
 
   ${mediaqueries.tablet`
     margin-bottom: 60px;
-  `};
-
-  ${mediaqueries.phablet`
-    display: none;
   `};
 `;
 
@@ -72,6 +70,14 @@ const HeroHeading = styled.h1`
 
 const HeroHeadingHighlight = styled.span`
   background-color: ${p => p.theme.colors.secondaryTransparent};
+`;
+
+const BioContainer = styled.div`
+  margin-right: 40px;
+
+  ${mediaqueries.tablet`
+    margin-right: 0;
+  `};
 `;
 
 const GridButton = styled.button<{ active: boolean }>`
@@ -128,7 +134,10 @@ const MainHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
         </HeroHeading>
       </HeadingContainer>
       <SubheadingContainer>
-        <Bio author={authors.find((author: IAuthor) => author.featured)!} />
+        <BioContainer>
+          <BioIntro />
+          <PageText>All writings and thoughts represent my thoughts only, and not those of any organization or employer.</PageText>
+        </BioContainer>
         <GridControlsContainer>
           <GridButton
             onClick={() => setGridLayout('tiles')}
