@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IIcon } from '../../types/types';
 
-const TripAdvisorIcon: IIcon = ({ fill = 'white' }) => (
+const TripAdvisorIcon: IIcon = ({ fill = 'white', width, height }) => (
   <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"

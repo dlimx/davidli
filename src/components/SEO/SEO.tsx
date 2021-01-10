@@ -381,12 +381,7 @@ const SEO: React.FC<HelmetProps> = ({
   }
 
   return (
-    <Helmet
-      htmlAttributes={{ lang: 'en' }}
-      script={themeUIDarkModeWorkaroundScript}
-      meta={metaTags}
-      defer={false}
-    >
+    <Helmet htmlAttributes={{ lang: 'en' }} script={themeUIDarkModeWorkaroundScript} meta={metaTags} defer={false}>
       <title>{title || site.title}</title>
       <script type="application/ld+json">{schema}</script>
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}

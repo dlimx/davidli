@@ -9,7 +9,6 @@ export const PageText = styled.p`
   transition: ${p => p.theme.colorModeTransition};
   margin: 0 0 35px;
   width: 100%;
-  max-width: 680px;
   ${mediaqueries.phablet`
     font-size: 14px;
   `}

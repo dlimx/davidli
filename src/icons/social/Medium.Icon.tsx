@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IIcon } from '../../types/types';
 
-const MediumIcon: IIcon = ({ fill = 'white' }) => (
+const MediumIcon: IIcon = ({ fill = 'white', width, height }) => (
   <svg width="13" height="11" viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"

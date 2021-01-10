@@ -34,7 +34,7 @@ module.exports = {
         background_color: `#000000`,
         theme_color: `#ff6090`,
         display: `standalone`,
-        icon: `src/images/icon.svg`,
+        icon: `content/images/icon.svg`,
       },
     },
     `gatsby-plugin-typescript`,
@@ -126,6 +126,13 @@ module.exports = {
       options: {
         path: 'content/authors',
         name: 'content/authors',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: 'content/images',
+        name: 'images',
       },
     },
     {

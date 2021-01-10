@@ -84,8 +84,8 @@ export interface IProgress {
 
 export type IIcon = React.FC<{
   fill?: string;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
 }>;
 
 interface IPageContext extends IPaginator {
@@ -126,4 +126,6 @@ declare global {
       createRange?: () => { text: string; parentElement: Function };
     };
   }
+
+  declare module '*.pdf';
 }

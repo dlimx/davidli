@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IIcon } from '../../types/types';
 
-const BehanceIcon: IIcon = ({ fill = 'white' }) => (
+const BehanceIcon: IIcon = ({ fill = 'white', width, height }) => (
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="17px" height="17px" viewBox="0 0 430.123 430.123">
     <g>
       <path

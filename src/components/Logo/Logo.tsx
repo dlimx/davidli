@@ -22,7 +22,7 @@ const LogoContainer = styled.div`
   `}
 `;
 
-const Logo: IIcon = ({ fill = 'white' }) => {
+const Logo: IIcon = ({ fill = 'white', width, height }) => {
   return (
     <LogoContainer>
       <svg

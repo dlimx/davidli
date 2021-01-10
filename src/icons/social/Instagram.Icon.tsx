@@ -2,8 +2,8 @@ import React from 'react';
 
 import { IIcon } from '../../types/types';
 
-const InstagramIcon: IIcon = ({ fill = 'white' }) => (
-  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+const InstagramIcon: IIcon = ({ fill = 'white', width, height }) => (
+  <svg width={width || 13} height={height || 13} viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
       clipRule="evenodd"
