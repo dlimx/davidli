@@ -39,10 +39,12 @@ export interface IColorsMode {
   primaryLight: string;
   primaryDark: string;
   primaryTransparent: string;
+  primaryBackground: string;
   secondary: string;
   secondaryLight: string;
   secondaryDark: string;
   secondaryTransparent: string;
+  secondaryBackground: string;
   hover: string;
   gradient: string;
   articleText: string;

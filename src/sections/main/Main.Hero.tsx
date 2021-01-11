@@ -69,7 +69,7 @@ const HeroHeading = styled.h1`
 `;
 
 const HeroHeadingHighlight = styled.span`
-  background-color: ${p => p.theme.colors.secondaryTransparent};
+  background-color: ${p => p.theme.colors.secondaryBackground};
 `;
 
 const BioContainer = styled.div`
