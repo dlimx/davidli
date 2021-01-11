@@ -51,7 +51,6 @@ const HeroHeading = styled.h1`
   font-style: normal;
   font-weight: 600;
   font-size: 52px;
-  line-height: 1.15;
   color: ${p => p.theme.colors.title};
   width: 100%;
 

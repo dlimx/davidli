@@ -18,7 +18,6 @@ const commonStyles = (p: IStyledProps) => css`
 const h1 = styled.h1`
   word-break: keep-all;
   font-size: 52px;
-  line-height: 1.15;
   ${commonStyles};
 
   ${mediaqueries.desktop`

@@ -1,3 +1,4 @@
+import { lighten, darken } from 'polished';
 import prism from './prism';
 import { IColors } from '../types/style';
 
@@ -5,12 +6,12 @@ const materialPrimary = '#ff6090';
 const materialPrimary100 = '#f8bbd0';
 const materialPrimary300 = '#ff6090';
 const materialPrimary700 = '#b0003a';
-const materialPrimary900 = '#880e4f';
+const materialPrimary900 = '#560027';
 const materialSecondary = '#2196f3';
 const materialSecondary100 = '#b3e5fc';
 const materialSecondary300 = '#6ec6ff';
 const materialSecondary700 = '#0069c0';
-const materialSecondary900 = '#002f6c';
+const materialSecondary900 = '#01579b';
 
 const colors: IColors = {
   prism,
@@ -23,12 +24,12 @@ const colors: IColors = {
   primaryDark: materialPrimary700,
   primaryLight: materialPrimary300,
   primaryTransparent: `${materialPrimary}33`,
-  primaryBackground: materialPrimary100,
+  primaryBackground: lighten(0.1, materialPrimary100),
   secondary: materialSecondary,
   secondaryDark: materialSecondary700,
   secondaryLight: materialSecondary300,
   secondaryTransparent: `${materialSecondary}33`,
-  secondaryBackground: materialSecondary100,
+  secondaryBackground: lighten(0.1, materialSecondary100),
   hover: 'rgba(0, 0, 0, 0.07)',
   gradient: 'linear-gradient(180deg, rgba(217, 219, 224, 0) 0%, #D9DBE0 100%)',
   articleText: '#08080B',
@@ -49,12 +50,12 @@ const colors: IColors = {
       primaryDark: materialSecondary300,
       primaryLight: materialSecondary700,
       primaryTransparent: `${materialSecondary}33`,
-      primaryBackground: materialSecondary900,
+      primaryBackground: darken(0.1, materialSecondary900),
       secondary: materialPrimary,
       secondaryDark: materialPrimary300,
       secondaryLight: materialPrimary700,
       secondaryTransparent: `${materialPrimary}33`,
-      secondaryBackground: materialPrimary900,
+      secondaryBackground: darken(0.1, materialPrimary900),
       background: '#111216',
       hover: 'rgba(255, 255, 255, 0.07)',
       gradient: 'linear-gradient(180deg, #111216 0%, rgba(66, 81, 98, 0.36) 100%)',
