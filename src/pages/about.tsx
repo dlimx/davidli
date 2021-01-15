@@ -95,7 +95,7 @@ const AboutPage: React.FC<PageProps> = () => {
                 <List>
                   <li>
                     <PageLink href="https://github.com/dlimx/Moments">Moments</PageLink> - provides a dynamically-generated list of
-                    stress-relieving and downtime ideas to fit a user&spos;s schedule
+                    stress-relieving and downtime ideas to fit a user&apos;s schedule
                   </li>
                   <li>
                     <PageLink href="https://github.com/dlimx/PopKwiz">PopKwiz</PageLink> - lets users quickly create easy-to-use and

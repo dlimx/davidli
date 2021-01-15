@@ -6,7 +6,7 @@ const log = (message, section) => {
   let str = `\n\u001B[36m${message}`;
 
   if (section) {
-    str += `\u001B[4m${section}\u001B[0m\u001B[0m\n`;
+    str += ` \u001B[4m${section}\u001B[0m\u001B[0m\n`;
   }
 
   console.log(str);
@@ -206,8 +206,6 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
         article.author.toLowerCase().includes(author.name.toLowerCase()),
       );
       const authorPath = slugify(author.slug, authorsPath);
-
-      console.log(author.name);
 
       if (author.name === 'David Li') {
         return;
