@@ -135,7 +135,7 @@ const MainHero: React.FC<{ authors: IAuthor[] }> = ({ authors }) => {
       <SubheadingContainer>
         <BioContainer>
           <BioIntro />
-          <PageText>All writings and thoughts represent my thoughts only, and not those of any organization or employer.</PageText>
+          <PageText>All writings represent my thoughts only, and not those of any organization or employer.</PageText>
         </BioContainer>
         <GridControlsContainer>
           <GridButton

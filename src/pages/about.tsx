@@ -114,7 +114,7 @@ const AboutPage: React.FC<PageProps> = () => {
           </PageHeading>
 
           <PageText>
-            I current work on <PageLink href="https://aws.amazon.com/connect/">Amazon Connect</PageLink>, a world-class call center as a
+            I currently work on <PageLink href="https://aws.amazon.com/connect/">Amazon Connect</PageLink>, a world-class call center as a
             service available in the cloud. Specifically, my team works on{' '}
             <PageLink href="https://aws.amazon.com/connect/contact-lens/">Contact Lens</PageLink>, a machine-learning driven analytics and
             search for your customer&apos;s phone calls and records. I design systems built for internet scale, with hundreds of millions of
@@ -138,7 +138,7 @@ const AboutPage: React.FC<PageProps> = () => {
           </PageHeading>
           <PageText>
             While always busy, I&apos;m always interested in the next challenge - especially solving the problems that really move the
-            needle, and hopefully makes the world a better place.
+            needle, and hopefully making the world a better place.
           </PageText>
           <PageText>
             Drop me an email at <PageLink href="mailto:me@davidli.io?subject=Hello!">me@davidli.io</PageLink>.

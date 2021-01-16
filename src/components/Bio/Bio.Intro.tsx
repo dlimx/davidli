@@ -9,7 +9,7 @@ export const BioIntro = () => {
       <span aria-label="Wave Hello" role="img">
         👋
       </span>{' '}
-      , my name is <strong>David (Min Xiao) Li</strong>. I&apos;m a software engineer currently based out of{' '}
+      , my name is <strong>David (Min Xiao) Li</strong>. I&apos;m a software engineer based out of{' '}
       <strong>Vancouver, Canada</strong>. I currently work at <PageLink href="https://aws.amazon.com/">Amazon Web Services</PageLink>.
     </PageText>
   );
