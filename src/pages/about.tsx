@@ -89,20 +89,20 @@ const AboutPage: React.FC<PageProps> = () => {
                 - but I am a city boy at heart. Here, I really enjoy both the summery and wintery activities - biking around the city,
                 hiking the mountains, and so on.
               </PageText>
-              <PageText>
-                I&apos;m always working on a few personal projects, both technical and non-technical. Two of the ones I&apos;m currently
-                working on include:
-                <List>
-                  <li>
-                    <PageLink href="https://github.com/dlimx/Moments">Moments</PageLink> - provides a dynamically-generated list of
-                    stress-relieving and downtime ideas to fit a user&apos;s schedule
-                  </li>
-                  <li>
-                    <PageLink href="https://github.com/dlimx/PopKwiz">PopKwiz</PageLink> - lets users quickly create easy-to-use and
-                    shareable/exportable short quizzes, whether for fun or studying
-                  </li>
-                </List>
-              </PageText>
+              {/* <PageText> */}
+              {/*  I&apos;m always working on a few personal projects, both technical and non-technical. Two of the ones I&apos;m currently */}
+              {/*  working on include: */}
+              {/*  <List> */}
+              {/*    <li> */}
+              {/*      <PageLink href="https://github.com/dlimx/Moments">Moments</PageLink> - provides a dynamically-generated list of */}
+              {/*      stress-relieving and downtime ideas to fit a user&apos;s schedule */}
+              {/*    </li> */}
+              {/*    <li> */}
+              {/*      <PageLink href="https://github.com/dlimx/PopKwiz">PopKwiz</PageLink> - lets users quickly create easy-to-use and */}
+              {/*      shareable/exportable short quizzes, whether for fun or studying */}
+              {/*    </li> */}
+              {/*  </List> */}
+              {/* </PageText> */}
             </PageDetail>
             <ImageContainer>
               <Image src={data?.file?.childImageSharp?.fluid} />
