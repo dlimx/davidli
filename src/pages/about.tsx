@@ -101,8 +101,8 @@ const AboutPage: React.FC<PageProps> = () => {
               {/*      <PageLink href="https://github.com/dlimx/PopKwiz">PopKwiz</PageLink> - lets users quickly create easy-to-use and */}
               {/*      shareable/exportable short quizzes, whether for fun or studying */}
               {/*    </li> */}
-              {/*  </List> */}
-              {/* </PageText> */}
+              {/* </List> */}
+              {/* /PageText> */}
             </PageDetail>
             <ImageContainer>
               <Image src={data?.file?.childImageSharp?.fluid} />
