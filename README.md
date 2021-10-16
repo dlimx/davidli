@@ -4,7 +4,10 @@ David Li's blog and personal website
 
 ### Development
 
-`yarn dev`
+```
+npm install
+npm run dev
+```
 
 ### License
 

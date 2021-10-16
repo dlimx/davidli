@@ -76,18 +76,18 @@ const AboutPage: React.FC<PageProps> = () => {
             <PageDetail>
               <BioIntro />
               <PageText>
-                On a day-to-day basis (pre-pandemic), I am often found working at a local bar or café. Some of my hobbies include writing,
-                coding, and beach volleyball. I love food and drink{' '}
+                On a day-to-day basis, I am often found exploring the city. Some of my hobbies include writing, coding, and volleyball. I
+                love food and drink{' '}
                 <span aria-label="Beer" role="img">
-                  🍻
+                  🥂
                 </span>{' '}
                 (feel free to reach out for lists of recommendations), and really exploring the unwandered paths of the cities I&apos;ve
                 been in.
               </PageText>
               <PageText>
-                In Vancouver, I&apos;ve also been getting more in touch with nature - exploring the bountiful wilderness of British Columbia
-                - but I am a city boy at heart. Here, I really enjoy both the summery and wintery activities - biking around the city,
-                hiking the mountains, and so on.
+                In New York, I&apos;ve been finding the most interesting people and diverse stories. It&apos;s been really cool seeing the
+                artistic and the cultural sides of life, having most recently spent a couple years in beautiful British Columbia. Always up
+                for the next adventure.
               </PageText>
               {/* <PageText> */}
               {/*  I&apos;m always working on a few personal projects, both technical and non-technical. Two of the ones I&apos;m currently */}
@@ -114,15 +114,20 @@ const AboutPage: React.FC<PageProps> = () => {
           </PageHeading>
 
           <PageText>
-            I currently work on <PageLink href="https://aws.amazon.com/connect/">Amazon Connect</PageLink>, a world-class call center as a
-            service available in the cloud. Specifically, my team works on{' '}
+            I currently work on <PageLink href="https://asana.com/product/goals">Asana Goals</PageLink>. Our goal (heh) is to connect
+            company mission with day-to-day work, providing clarity and a sense of purpose to the routine tasks and projects you complete.
+          </PageText>
+
+          <PageText>
+            I last worked on <PageLink href="https://aws.amazon.com/connect/">Amazon Connect</PageLink>, a world-class call center as a
+            service available in the cloud. Specifically, my team worked on{' '}
             <PageLink href="https://aws.amazon.com/connect/contact-lens/">Contact Lens</PageLink>, a machine-learning driven analytics and
-            search for your customer&apos;s phone calls and records. I design systems built for internet scale, with hundreds of millions of
-            daily interactions. I build finely-tuned UIs and APIs to delight our users and solve even the problems that they didn&apos;t
-            know they had.
+            search for your customer&apos;s phone calls and records. I designed systems built for web-scale, with billions of piecse of data
+            points every day, serving as the backbone of the internet. I built finely-tuned UIs and APIs to delight our users and solve the
+            problems that they didn&apos;t even know they had.
           </PageText>
           <PageText>
-            Previously, I worked at <PageLink href="https://www.quartermaster.house/homeowner/">Quartermaster</PageLink>, a startup
+            Before that, I worked at <PageLink href="https://www.quartermaster.house/homeowner/">Quartermaster</PageLink>, a startup
             connecting local communities with your next door neighbors and small business. I led UI, building experiences for homeowners and
             pros that made their day-to-day life more convenient.
           </PageText>
@@ -138,7 +143,7 @@ const AboutPage: React.FC<PageProps> = () => {
           </PageHeading>
           <PageText>
             While always busy, I&apos;m always interested in the next challenge - especially solving the problems that really move the
-            needle, and hopefully making the world a better place.
+            needle, and making the world a better place.
           </PageText>
           <PageText>
             Drop me an email at <PageLink href="mailto:me@davidli.io?subject=Hello!">me@davidli.io</PageLink>.
