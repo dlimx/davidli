@@ -64,15 +64,6 @@ const siteQuery = graphql`
         }
       }
     }
-    allMdx(sort: { fields: frontmatter___date, order: ASC }, filter: { frontmatter: { date: { ne: null } } }) {
-      edges {
-        node {
-          frontmatter {
-            date
-          }
-        }
-      }
-    }
   }
 `;
 
@@ -81,9 +72,7 @@ const Footer: React.FC<{}> = () => {
   const { name, social } = results.allSite.edges[0].node.siteMetadata;
 
   const copyrightDate = (() => {
-    const { edges } = results.allMdx;
-    const years = [0, 1].map(edge => new Date(edges[edge].node.frontmatter.date).getFullYear());
-    return years[0] === years[1] ? `${years[0]}` : `${years[0]}–${years[1]}`;
+    return `2017–${new Date().getFullYear()}`;
   })();
 
   return (
