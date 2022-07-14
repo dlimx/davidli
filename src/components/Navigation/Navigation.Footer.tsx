@@ -25,7 +25,7 @@ const FooterContainer = styled.div`
   `}
 `;
 
-const HoritzontalRule = styled.div`
+const HorizontalRule = styled.div`
   position: relative;
   margin: 140px auto 50px;
   border-bottom: 1px solid ${p => p.theme.colors.horizontalRule};
@@ -78,7 +78,7 @@ const Footer: React.FC<{}> = () => {
   return (
     <>
       <Section narrow>
-        <HoritzontalRule />
+        <HorizontalRule />
         <FooterContainer>
           <FooterText>
             © {copyrightDate} {name}

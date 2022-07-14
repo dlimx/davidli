@@ -44,11 +44,6 @@ const ImageContainer = styled.div`
   `};
 `;
 
-const List = styled.ul`
-  padding-left: 20px;
-  padding-top: 20px;
-`;
-
 const AboutPage: React.FC<PageProps> = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -81,28 +76,18 @@ const AboutPage: React.FC<PageProps> = () => {
                 <span aria-label="Beer" role="img">
                   🥂
                 </span>{' '}
-                (feel free to reach out for lists of recommendations), and really exploring the unwandered paths of the cities I&apos;ve
-                been in.
+                (feel free to reach out for lists of recommendations), and really exploring the unwandered paths. I&apos;m always down to
+                check go to a museum, or see a show. Or there&apos;s always an invite to come over for food and drink!
               </PageText>
               <PageText>
                 In New York, I&apos;ve been finding the most interesting people and diverse stories. It&apos;s been really cool seeing the
-                artistic and the cultural sides of life, having most recently spent a couple years in beautiful British Columbia. Always up
-                for the next adventure.
+                artistic and the cultural sides of life, while enjoying the benefits of the one of the world&apos;s largest and most
+                exciting cities.
               </PageText>
-              {/* <PageText> */}
-              {/*  I&apos;m always working on a few personal projects, both technical and non-technical. Two of the ones I&apos;m currently */}
-              {/*  working on include: */}
-              {/*  <List> */}
-              {/*    <li> */}
-              {/*      <PageLink href="https://github.com/dlimx/Moments">Moments</PageLink> - provides a dynamically-generated list of */}
-              {/*      stress-relieving and downtime ideas to fit a user&apos;s schedule */}
-              {/*    </li> */}
-              {/*    <li> */}
-              {/*      <PageLink href="https://github.com/dlimx/PopKwiz">PopKwiz</PageLink> - lets users quickly create easy-to-use and */}
-              {/*      shareable/exportable short quizzes, whether for fun or studying */}
-              {/*    </li> */}
-              {/* </List> */}
-              {/* /PageText> */}
+              <PageText>
+                I&apos;ve lived in quite a few cities in North America. I moved around Canada, having lived in Vancouver, Toronto and
+                Montreal last. Who knows where the next adventure will take us?
+              </PageText>
             </PageDetail>
             <ImageContainer>
               <Image src={data?.file?.childImageSharp?.fluid} />

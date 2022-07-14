@@ -92,6 +92,7 @@ const MenuFloat = styled.div<{ isDark: boolean }>`
 
 const MenuText = styled.span`
   margin-right: 8px;
+  white-space: nowrap;
 `;
 
 const Hidden = styled.div`
