@@ -210,7 +210,7 @@ const GridItem: React.FC<GridItemProps> = ({ article, narrow }) => {
     <ArticleLink to={article.slug} data-a11y="false" narrow={narrow ? 'true' : 'false'}>
       <Item>
         <ImageContainer>
-          <Image src={imageSource} />
+          <Image src={imageSource?.gatsbyImageData} alt={`Link to ${article.slug}`} />
         </ImageContainer>
         <Title dark hasOverflow={hasOverflow}>
           {article.title}

@@ -18,8 +18,8 @@ const AuthorAvatar = styled.div`
   background: ${p => p.theme.colors.grey};
   overflow: hidden;
 
-  .gatsby-image-wrapper > div {
-    padding-bottom: 100% !important;
+  .gatsby-image-wrapper {
+    margin-bottom: 100% !important;
   }
 
   ${mediaqueries.phablet`
@@ -89,8 +89,8 @@ const CoAuthorAvatarOpen = styled.div`
   overflow: hidden;
   pointer-events: none;
 
-  .gatsby-image-wrapper > div {
-    padding-bottom: 100% !important;
+  .gatsby-image-wrapper {
+    margin-bottom: 100% !important;
     overflow: hidden;
   }
 `;
@@ -107,8 +107,8 @@ const CoAuthorAvatar = styled.div`
   overflow: hidden;
   pointer-events: none;
 
-  .gatsby-image-wrapper > div {
-    padding-bottom: 100% !important;
+  .gatsby-image-wrapper {
+    margin-bottom: 100% !important;
     overflow: hidden;
   }
 
@@ -253,7 +253,7 @@ const CoAuthors: React.FC<AuthorsProps> = ({ authors }) => {
       <CoAuthorsList style={listWidth}>
         {authors.map((author, index) => (
           <CoAuthorAvatar style={{ left: `${index * 15}px` }} key={author.name}>
-            <RoundedImage src={author.avatar.small} />
+            <RoundedImage src={author.avatar.small.gatsbyImageData} />
           </CoAuthorAvatar>
         ))}
       </CoAuthorsList>
@@ -272,7 +272,7 @@ const CoAuthors: React.FC<AuthorsProps> = ({ authors }) => {
               <CoAuthorsListItemOpen key={author.name}>
                 <AuthorLink as={author.authorsPage ? Link : 'div'} to={generateAuthorLink(author)}>
                   <CoAuthorAvatarOpen>
-                    <RoundedImage src={author.avatar.small} />
+                    <RoundedImage src={author.avatar.small.gatsbyImageData} />
                   </CoAuthorAvatarOpen>
                   <AuthorNameOpen>{author.name}</AuthorNameOpen>
                 </AuthorLink>
@@ -299,7 +299,7 @@ const ArticleAuthors: React.FC<AuthorsProps> = ({ authors }) => {
   return (
     <AuthorLink as={authors[0].authorsPage ? Link : 'div'} to={generateAuthorLink(authors[0])}>
       <AuthorAvatar>
-        <RoundedImage src={authors[0].avatar.small} />
+        <RoundedImage src={authors[0].avatar.small.gatsbyImageData} />
       </AuthorAvatar>
       <strong>{authors[0].name}</strong>
       <HideOnMobile>,&nbsp;</HideOnMobile>

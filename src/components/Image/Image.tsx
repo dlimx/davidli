@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import GatsbyImg from 'gatsby-image';
+import { GatsbyImage, StaticImage, getSrc, getImage } from 'gatsby-plugin-image';
 
 /**
  * To soften the blur-up we get from the default configuration of gatbsy image
  * we're adding a CSS blur to the image. This makes it smoother!
  */
-const StyledGatsbyImag = styled(GatsbyImg)`
+const StyledGatsbyImage = styled(GatsbyImage)`
+  & > img {
+    filter: blur(8px);
+  }
+`;
+const StyledStaticImage = styled(StaticImage)`
   & > img {
     filter: blur(8px);
   }
@@ -42,27 +47,33 @@ const Image: React.FC<any> = ({ src, alt, ...props }) => {
   // Create a bool to tell us if the src is a string (vanilla img) or object (Gatsby)
   const isGatsby = typeof src !== 'string';
 
-  // Now we need to calculate the prop that will set the src of the image.
-  // This will either be src (for strings), fixed or fluid. Defaults to src
-  const keyForSrc =
-    // If src is an object with a width and height then we want fixed={src}
-    (isGatsby && src.width && src.height && 'fixed') ||
-    // The only other Gatsby option would be fluid
-    (isGatsby && 'fluid') ||
-    // Otherwise src is a string so set a vanilla src prop
-    'src';
+  // Now we need to calculate the data that will set the src of the image.
+  // This will either be src (for strings) or image for query results.
+  const keyForSrc = isGatsby ? 'image' : 'src';
+  const dataForSrc = isGatsby ? src : getSrc(src);
+  let ComponentForSrc;
 
   // todo : throw an exception if it is neither src nor fixed nor fluid
 
   // Now set either src, fixed or fluid to the src prop
-  imgProps[keyForSrc] = src;
+  imgProps[keyForSrc] = dataForSrc;
 
   // We don't want to CSS blur tracedSVG images! Only regular blur-ups.
-  const Component = src.tracedSVG ? GatsbyImg : StyledGatsbyImag;
+  if (src.tracedSVG) {
+    if (isGatsby) {
+      ComponentForSrc = GatsbyImage;
+    } else {
+      ComponentForSrc = StaticImage;
+    }
+  } else if (isGatsby) {
+    ComponentForSrc = StyledGatsbyImage;
+  } else {
+    ComponentForSrc = StyledStaticImage;
+  }
 
   // Retrun either the GatsbyImg component or a regular img tag with the spread props
   // eslint-disable-next-line jsx-a11y/alt-text
-  return isGatsby ? <Component {...imgProps} /> : <img {...imgProps} />;
+  return <ComponentForSrc {...imgProps} />;
 };
 
 export default Image;

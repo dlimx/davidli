@@ -2,16 +2,6 @@
 
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-transformer-sharp/src/fragments.js
 
-const GatsbyFluid_withWebp = `
-  base64
-  aspectRatio
-  src
-  srcSet
-  srcWebp
-  srcSetWebp
-  sizes
-`;
-
 module.exports = {
   articles: `{
     articles: allArticle(
@@ -34,24 +24,16 @@ module.exports = {
           body
           hero {
             full: childImageSharp {
-              fluid(maxWidth: 944, quality: 100) {
-                ${GatsbyFluid_withWebp}
-              }
+              gatsbyImageData(width: 944, quality: 100)
             }
             regular: childImageSharp {
-              fluid(maxWidth: 653, quality: 100) {
-                ${GatsbyFluid_withWebp}
-              }
+              gatsbyImageData(width: 680, quality: 100)
             }
             narrow: childImageSharp {
-              fluid(maxWidth: 457, quality: 100) {
-                ${GatsbyFluid_withWebp}
-              }
+              gatsbyImageData(width: 457, quality: 100)
             }
             seo: childImageSharp {
-              fixed(width: 1200, quality: 100) {
-                src
-              }
+              gatsbyImageData(layout: FIXED, width: 1200, quality: 100)
             }
           }
         }
@@ -73,19 +55,13 @@ module.exports = {
           slug
           avatar {
             small: childImageSharp {
-              fluid(maxWidth: 50, quality: 100) {
-                ${GatsbyFluid_withWebp}
-              }
+              gatsbyImageData(width: 50, quality: 100)
             }
             medium: childImageSharp {
-              fluid(maxWidth: 100, quality: 100) {
-                ${GatsbyFluid_withWebp}
-              }
+              gatsbyImageData(width: 100, quality: 100)
             }
             large: childImageSharp {
-              fluid(maxWidth: 328, quality: 100) {
-                ${GatsbyFluid_withWebp}
-              }
+              gatsbyImageData(width: 328, quality: 100)
             }
           }
         }

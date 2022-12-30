@@ -6,24 +6,7 @@ export interface IPaginator {
   pathPrefix: string;
 }
 
-interface IGatsbyImage {
-  src: string;
-  base64?: string;
-  srcWebp?: string;
-  srcSet?: string;
-  srcSetWebp?: string;
-  tracedSVG?: string;
-}
-
-interface IGatsbyImageFluid extends IGatsbyImage {
-  maxHeight: number;
-  maxWidth: number;
-}
-
-interface IGatsbyImageFixed extends IGatsbyImage {
-  height: number;
-  width: number;
-}
+type IGatsbyImageData = Record<string, any>;
 
 export interface IAuthor {
   authorsPage?: boolean;
@@ -32,11 +15,21 @@ export interface IAuthor {
   slug: string;
   bio: string;
   avatar: {
-    image: IGatsbyImageFluid;
-    full: IGatsbyImageFluid;
-    medium: IGatsbyImageFluid;
-    large: IGatsbyImageFluid;
-    small: IGatsbyImageFluid;
+    image: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    full: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    medium: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    large: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    small: {
+      gatsbyImageData: IGatsbyImageData;
+    };
   };
   social?: {
     name: string;
@@ -52,10 +45,18 @@ export interface IArticle {
   title: string;
   id: string;
   hero: {
-    full: IGatsbyImageFluid;
-    preview: IGatsbyImageFluid;
-    regular: IGatsbyImageFluid;
-    narrow: IGatsbyImageFluid;
+    full: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    preview: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    regular: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+    narrow: {
+      gatsbyImageData: IGatsbyImageData;
+    };
     seo: {
       src?: string;
     };

@@ -74,7 +74,7 @@ const Bio: React.FC<{ author: IAuthor }> = ({ author }) => {
     <BioContainer>
       <BioAvatar as={author.authorsPage ? Link : 'div'} to={author.slug} data-a11y="false" aria-label="Author's bio">
         <BioAvatarInner>
-          <RoundedImage src={author.avatar.medium} />
+          <RoundedImage src={author.avatar.medium.gatsbyImageData} />
         </BioAvatarInner>
       </BioAvatar>
       <BioText dangerouslySetInnerHTML={{ __html: author.bio }} />

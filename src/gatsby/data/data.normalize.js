@@ -17,10 +17,10 @@ function normalizeHero(article) {
 
   if (article.hero) {
     hero = {
-      full: article.hero.full.fluid,
-      regular: article.hero.regular.fluid,
-      narrow: article.hero.narrow.fluid,
-      seo: article.hero.seo.fixed,
+      full: article.hero.full,
+      regular: article.hero.regular,
+      narrow: article.hero.narrow,
+      seo: article.hero.seo,
     };
   } else {
     console.log('\u001B[33m', `Missing hero for "${article.title}"`);
@@ -38,9 +38,9 @@ function normalizeAvatar(author) {
 
   if (author.avatar) {
     avatar = {
-      small: author.avatar.small.fluid,
-      medium: author.avatar.medium.fluid,
-      large: author.avatar.large.fluid,
+      small: author.avatar.small,
+      medium: author.avatar.medium,
+      large: author.avatar.large,
     };
   } else {
     console.log('\u001B[33m', `Missing avatar for "${author.name}"`);

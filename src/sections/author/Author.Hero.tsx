@@ -90,7 +90,7 @@ const AuthorHero: React.FC<AuthorHeroProps> = ({ author }) => {
   return (
     <Hero>
       <HeroImage>
-        <RoundedImage src={author.avatar.large} />
+        <RoundedImage src={author.avatar.large.gatsbyImageData} />
       </HeroImage>
       <Heading>{author.name}</Heading>
       <Subheading dangerouslySetInnerHTML={{ __html: author.bio }} />

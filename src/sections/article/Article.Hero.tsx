@@ -139,7 +139,9 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           </ArticleMeta>
         </HeroSubtitle>
       </Header>
-      <HeroImage id="ArticleImage__Hero">{hasHeroImage ? <Image src={article.hero.full} /> : <ImagePlaceholder />}</HeroImage>
+      <HeroImage id="ArticleImage__Hero">
+        {hasHeroImage ? <Image src={article.hero.full?.gatsbyImageData} /> : <ImagePlaceholder />}
+      </HeroImage>
     </>
   );
 };

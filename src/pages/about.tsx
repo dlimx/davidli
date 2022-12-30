@@ -36,7 +36,6 @@ const PageDetail = styled.div`
 const ImageContainer = styled.div`
   width: 33%;
   height: 100%;
-  border-radius: 50%;
   box-shadow: 0 30px 60px 5px rgba(0, 0, 0, 0.3), 0 18px 36px 5px rgba(0, 0, 0, 0.33);
   transition: transform 0.3s var(--ease-out-quad), box-shadow 0.3s var(--ease-out-quad);
   ${mediaqueries.phablet`
@@ -46,14 +45,10 @@ const ImageContainer = styled.div`
 
 const AboutPage: React.FC<PageProps> = () => {
   const data = useStaticQuery(graphql`
-    query {
+    {
       file(relativePath: { eq: "profile-1.jpg" }) {
         childImageSharp {
-          # Specify a fluid image and fragment
-          # The default maxWidth is 800 pixels
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
@@ -90,7 +85,7 @@ const AboutPage: React.FC<PageProps> = () => {
               </PageText>
             </PageDetail>
             <ImageContainer>
-              <Image src={data?.file?.childImageSharp?.fluid} />
+              <Image src={data?.file?.childImageSharp?.gatsbyImageData} alt="Picture of David Li" />
             </ImageContainer>
           </Row>
 
