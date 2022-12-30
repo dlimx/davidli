@@ -1,3 +1,7 @@
+const defaults = {
+  timeToRead: 0,
+};
+
 // helper that grabs the mdx resolver when given a string fieldname
 const mdxResolverPassthrough = fieldName => async (source, arguments_, context, info) => {
   const type = info.schema.getType(`Mdx`);
@@ -8,7 +12,7 @@ const mdxResolverPassthrough = fieldName => async (source, arguments_, context, 
   const result = await resolver(mdxNode, arguments_, context, {
     fieldName,
   });
-  return result;
+  return result || defaults[fieldName];
 };
 
 // Define resolvers for custom fields

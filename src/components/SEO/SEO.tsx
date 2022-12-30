@@ -34,7 +34,7 @@ interface HelmetProps {
   isBlogPost?: boolean;
   pathname?: string;
   published?: string;
-  timeToRead?: string;
+  timeToRead?: number;
   title?: string;
   isSecret?: boolean;
 }

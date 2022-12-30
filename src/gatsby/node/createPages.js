@@ -74,8 +74,6 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     }
   `);
 
-  console.log(sources);
-
   const dataSources = {
     articles: [],
     authors: [],
@@ -93,6 +91,8 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   try {
     log('Querying Articles & Authors');
     const dataArticles = await graphql(query.articles);
+
+    log(dataArticles);
     const dataAuthors = await graphql(query.authors);
 
     dataSources.articles = dataArticles.data.articles.edges.map(normalize.articles);

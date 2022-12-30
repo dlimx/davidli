@@ -13,6 +13,7 @@ const rules = {
   'import/prefer-default-export': 'off',
   'react/jsx-props-no-spreading': 'off',
   'no-unused-vars': 'warn',
+  'react/require-default-props': 'off',
 };
 
 module.exports = {
