@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `David Li`,
     name: `David Li`,
-    description: `Let's build a brighter tomorrow`,
+    description: `Let's build a brighter tomorrow ✨`,
     author: `@dlimx`,
     siteUrl: 'https://davidli.io',
     social: [
@@ -99,6 +99,7 @@ module.exports = {
         },
         feeds: [
           {
+            title: 'David Li',
             serialize: ({ query: { site, allArticle } }) => {
               return allArticle.edges
                 .filter(edge => !edge.node.secret)
