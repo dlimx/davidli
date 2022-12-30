@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkdavidli=self.webpackChunkdavidli||[]).push([[454],{27991:function(e,n,u){u.r(n);var a=u(71082);n.default=function(){return"undefined"!=typeof window&&(0,a.navigate)("/about",{replace:!0}),null}}}]);
+//# sourceMappingURL=component---src-pages-authors-david-li-tsx-c29d8ca66a13dd776f0d.js.map
